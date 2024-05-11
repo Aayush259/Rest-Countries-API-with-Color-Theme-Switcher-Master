@@ -25,6 +25,14 @@ button{
     cursor:pointer;
 }
 
+.bold-800{
+    font-weight:800;
+}
+
+.bold-600{
+    font-weight:600;
+}
+
 .app-dark  *{
     color:var(--White-Dark-Mode-Text-Light-Mode-Elements) !important;
 }
