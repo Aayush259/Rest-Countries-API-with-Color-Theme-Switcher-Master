@@ -24,3 +24,51 @@
 button{
     cursor:pointer;
 }
+
+.app-dark  *{
+    color:var(--White-Dark-Mode-Text-Light-Mode-Elements) !important;
+}
+
+.light-body{
+    background-color:var(--Very-Light-Gray-Light-Mode-Background);
+}
+
+.dark-body{
+    background-color:var(--Very-Dark-Blue-Dark-Mode-Background);
+}
+
+#header{
+    padding:1rem 3.5rem;
+    justify-content:space-between;
+    color:var(--Very-Dark-Blue-Light-Mode-Text);
+}
+
+.light-header{
+    background-color:#FFF;
+    color:var(--Very-Dark-Blue-Light-Mode-Text);
+    box-shadow:0 0 5px 0 hsla(0, 0%, 52%, 0.425);
+}
+
+.dark-header{
+    background-color:var(--Dark-Blue-Dark-Mode-Elements);
+    box-shadow:0 0 4px 0 var(--Very-Dark-Blue-Light-Mode-Text) !important;
+}
+
+h1{
+    font-size:1.5rem;
+    font-weight:800;
+}
+
+#mode{
+    gap:10px;
+    font-size:16px;
+    font-weight:600;
+    border:none;
+    background-color:transparent;
+}
+
+#themeImg{
+    height:30px;
+    width:15px;
+    transform:rotate(-25deg);
+}
