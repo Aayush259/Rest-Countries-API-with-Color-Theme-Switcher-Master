@@ -12,9 +12,33 @@ function Home(props) {
     // Initializing countryData state to null.
     let [countryData, setCountryData] = useState(null);
 
+    // Initializing search state with an object of two properties: keyword (the user-prompt) and the region (from the dropdown).
+    let [search, setSearch] = useState({
+        keyword: '',
+        region: ''
+    });
+
     // This function updates the current state.
     const updateCurrentState = (state) => {
         setCurrentState(state);
+    }
+
+    // This function sets the keyword property of the search property to display the filtered countries based on user prompt for countries.
+    const searchCountries = (keyword) => {
+        setSearch({
+            ...search,
+            keyword: keyword,
+        });
+        updateCurrentState("search");
+    }
+
+    // This function sets the region property of the search state to diaplay the filtered countries based on region.
+    const filterRegion = (region) => {
+        setSearch({
+            ...search,
+            region: region,
+        });
+        updateCurrentState("search");
     }
 
     // Fetching countryData from restcountries API and setting it to countryData state.
@@ -31,7 +55,7 @@ function Home(props) {
         return (
             <>
             <div id="loaderContainer" className="flex">
-                <div id="loader">Loading...</div>
+                <div id="loader"></div>
             </div>
             </>
         )
@@ -42,8 +66,40 @@ function Home(props) {
         // Returning home screen.
         return (
             <>
+            <Search onSearch={searchCountries} filterRegion={filterRegion} mode={props.mode} />
             <div id="countryCardContainer">
                 {countryData.map((country) => {
+                    return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} displayCountryDetail={updateCurrentState} mode={props.mode} />
+                })}
+            </div>
+            </>
+        )
+    } else if (currentState === "search") {
+        // Declaring two variables for filtering countries first based on region and then based on user-prompt, if any.
+        let filteredCountriesBasedOnRegion;
+        let arrayOfFilteredCountryDetail;
+
+        // If the search region is empty string or "Find" then filtered countries based on region will be the original country data (all countries). Otherwise, filter the countries based on the region.
+        if (search.region === "" || search.region === "Find") {
+            filteredCountriesBasedOnRegion = countryData;
+        } else {
+            filteredCountriesBasedOnRegion = countryData.filter(country => country["region"] === search.region)
+        }
+
+        // If user has not provided any prompt, the filtered countries will be equl to filtered countries based on region. Otherwise, filter the countries based on the user-prompt and selected region.
+        if (search.keyword === "") {
+            arrayOfFilteredCountryDetail = filteredCountriesBasedOnRegion;
+        } else {
+            // Storing filtered country details for country cards based on user search's keyword.
+            arrayOfFilteredCountryDetail = filteredCountriesBasedOnRegion.filter(country => country.name.common.toLowerCase().startsWith(search.keyword.toLowerCase()));
+        }
+
+        // Returning home screen with search filters.
+        return (
+            <>
+            <Search onSearch={searchCountries} filterRegion={filterRegion} mode={props.mode} />
+            <div id="countryCardContainer">
+                {arrayOfFilteredCountryDetail.map((country) => {
                     return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} displayCountryDetail={updateCurrentState} mode={props.mode} />
                 })}
             </div>
