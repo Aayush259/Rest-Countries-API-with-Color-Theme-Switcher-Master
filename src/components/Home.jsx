@@ -75,7 +75,7 @@ function Home(props) {
 
         // Returning country detail.
         return (
-            <CountryDetail countryName={countryName} countryPopulation={countryPopulation} countryNativeName={countryNativeName} countryLanguages={countryLanguages} countryRegion={countryRegion} countryCapital={countryCapital} countrySubRegion={countrySubRegion} countryTopLevelDomain={countryTopLevelDomain} countryCurrencies={countryCurrencies} borderCountries={borderCountries} countryFlag={countryFlag} countryFlagAlt={countryFlagAlt} mode={props.mode} />
+            <CountryDetail countryName={countryName} countryPopulation={countryPopulation} countryNativeName={countryNativeName} countryLanguages={countryLanguages} countryRegion={countryRegion} countryCapital={countryCapital} countrySubRegion={countrySubRegion} countryTopLevelDomain={countryTopLevelDomain} countryCurrencies={countryCurrencies} borderCountries={borderCountries} countryFlag={countryFlag} countryFlagAlt={countryFlagAlt} goBack={updateCurrentState} mode={props.mode} />
         )
     }
 }

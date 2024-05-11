@@ -5,10 +5,15 @@ function CountryDetail(props) {
     // Splitting the borderCountries into an array.
     let borderCountriesArray = props.borderCountries.toString().split(",");
 
+    // This function sets the home state.
+    const goBack = () => {
+        props.goBack("home");
+    }
+
     // Returning country detail.
     return (
         <>
-        <button id="backBtn" className={`flex ${props.mode}-backBtn`}><span className="backArrow">&#8599;</span>Back</button>
+        <button id="backBtn" className={`flex ${props.mode}-backBtn`} onClick={goBack}><span className="backArrow">&#8599;</span>Back</button>
         <div id="countryDetail" className="flex">
             <div id="countryFlag">
                 <img src={props.countryFlag} alt={props.countryFlagAlt} />
