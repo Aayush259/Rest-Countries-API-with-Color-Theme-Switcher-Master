@@ -23,10 +23,10 @@ function Search(props) {
         <div id="search" className="flex">
             <label htmlFor="country" className={`flex ${props.mode}-label`}>
                 <img src={searchImg} alt="Search for a country" height={15} className={`${props.mode}-searchImg`}/>
-                <input type="text" name="country" id="country" placeholder="Search for a country..." onChange={searchCountry} />
+                <input type="text" name="country" id="country" placeholder="Search for a country..." onChange={searchCountry} autoComplete="on" />
             </label>
             <label htmlFor="region" className={`flex ${props.mode}-label`}>
-                <select name="region" id="region" onChange={filterCountryCards}>
+                <select name="region" id="region" onChange={filterCountryCards} autoComplete="off">
                     <option value="Find" className={`${props.mode}-label`}>Find by Region</option>
                     <option value="Africa" className={`${props.mode}-label`}>Africa</option>
                     <option value="Americas" className={`${props.mode}-label`}>America</option>

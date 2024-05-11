@@ -73,6 +73,7 @@ h1{
     font-weight:600;
     border:none;
     background-color:transparent;
+    padding:0.5rem;
 }
 
 #themeImg{
@@ -227,8 +228,41 @@ label[for="region"]{
     height:100%;
     border:none;
     padding:1rem;
+    outline:0;
 }
 
-#region:active{
+/* #region:active{
     outline:0;
+} */
+
+#loaderContainer{
+    width:100vw;
+    min-height:90vh;
+    background-color:transparent;
+}
+
+#loader{
+    height:60px;
+    width:60px;
+    border:6px solid var(--Very-Dark-Blue-Light-Mode-Text);
+    border-top-color:#FFF;
+    border-radius:100px;
+    animation:loading 0.7s ease-in-out 0s infinite normal forwards,changeBorderColor 0.7s ease-in-out 0s infinite normal forwards;
+}
+
+@keyframes loading{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+@keyframes changeBorderColor{
+    0%{border-top-color:#FFF;}
+    25%{border-top-color:var(--Very-Dark-Blue-Light-Mode-Text);
+        border-left-color:#FFF;}
+    50%{border-left-color:var(--Very-Dark-Blue-Light-Mode-Text);
+        border-bottom-color:#FFF;}
+    75%{border-bottom-color:var(--Very-Dark-Blue-Light-Mode-Text);
+        border-right-color:#FFF;}
+    100%{border-right-color:var(--Very-Dark-Blue-Light-Mode-Text);
+        border-top-color:#FFF;}
 }
