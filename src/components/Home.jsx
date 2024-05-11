@@ -49,6 +49,34 @@ function Home(props) {
             </div>
             </>
         )
+    } else {
+
+        // Declaring different variables for country info.
+        const countryName = currentState;
+        const countryDetail = countryData.find(country => country.name.common === countryName);
+        const countryFlag = countryDetail["flags"]["svg"];
+        const countryFlagAlt = countryDetail["flags"]["alt"];
+        const countryLanguages = Object.values(countryDetail["languages"]).join(", ");
+        const countryNativeName = countryDetail.name["nativeName"][Object.keys(countryDetail["languages"])[0]]["common"];
+        const countryPopulation = countryDetail["population"];
+        const countryRegion = countryDetail["region"];
+        const countrySubRegion = countryDetail["subregion"];
+        const countryCapital = countryDetail["capital"];
+        const countryTopLevelDomain = countryDetail["tld"];
+        const countryCurrencies = countryDetail["currencies"][Object.keys(countryDetail["currencies"])[0]]["name"];
+
+        // If there are no borderCountries, the set borderCountries to "No Border Countries".
+        let borderCountries;
+        try {
+            borderCountries = countryDetail["borders"].join(", ");
+        } catch {
+            borderCountries = "No Border Countries";
+        }
+
+        // Returning country detail.
+        return (
+            <CountryDetail countryName={countryName} countryPopulation={countryPopulation} countryNativeName={countryNativeName} countryLanguages={countryLanguages} countryRegion={countryRegion} countryCapital={countryCapital} countrySubRegion={countrySubRegion} countryTopLevelDomain={countryTopLevelDomain} countryCurrencies={countryCurrencies} borderCountries={borderCountries} countryFlag={countryFlag} countryFlagAlt={countryFlagAlt} mode={props.mode} />
+        )
     }
 }
 
