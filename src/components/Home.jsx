@@ -12,6 +12,9 @@ function Home(props) {
     // Initializing countryData state to null.
     let [countryData, setCountryData] = useState(null);
 
+    // This cardToScroll state will keep track of the card which is clicked and its detail is shown so that while navigating back, user can continue from where the card is clicked.
+    let [cardToScroll, setCardToScroll] = useState(null);
+
     // Initializing search state with an object of two properties: keyword (the user-prompt) and the region (from the dropdown).
     let [search, setSearch] = useState({
         keyword: '',
@@ -22,6 +25,13 @@ function Home(props) {
     const updateCurrentState = (state) => {
         setCurrentState(state);
     }
+
+    useEffect(() => {
+        if (currentState === 'home' && cardToScroll) {
+            const targetElement = document.getElementById(cardToScroll);
+            targetElement.scrollIntoView({ behavior: 'smooth'});
+        }
+    }, [currentState]);
 
     // This function sets the keyword property of the search property to display the filtered countries based on user prompt for countries.
     const searchCountries = (keyword) => {
@@ -69,7 +79,7 @@ function Home(props) {
             <Search onSearch={searchCountries} filterRegion={filterRegion} mode={props.mode} />
             <div id="countryCardContainer">
                 {countryData.map((country) => {
-                    return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} displayCountryDetail={updateCurrentState} mode={props.mode} />
+                    return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} displayCountryDetail={updateCurrentState} mode={props.mode} setCardToScroll={setCardToScroll} />
                 })}
             </div>
             </>
@@ -100,7 +110,7 @@ function Home(props) {
             <Search onSearch={searchCountries} filterRegion={filterRegion} mode={props.mode} />
             <div id="countryCardContainer">
                 {arrayOfFilteredCountryDetail.map((country) => {
-                    return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} displayCountryDetail={updateCurrentState} mode={props.mode} />
+                    return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} displayCountryDetail={updateCurrentState} mode={props.mode} setCardToScroll={setCardToScroll} />
                 })}
             </div>
             </>

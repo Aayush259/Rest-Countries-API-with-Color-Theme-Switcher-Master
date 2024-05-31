@@ -4,7 +4,16 @@ function CountryCard(props) {
 
     // This function handles the click on the card and displays the detail information about the country by calling displayCountryDetail function in Home component.
     const handleCountryClick = () => {
+
+        props.setCardToScroll(props.countryName);
+
         props.displayCountryDetail(props.countryName);
+        
+        // Scroll to top.
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 
     // Returning Card.
