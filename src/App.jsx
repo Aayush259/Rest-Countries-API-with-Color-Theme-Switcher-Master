@@ -11,6 +11,9 @@ function App() {
   // Initializing the app theme with light.
   let [theme, setTheme] = useState("light");
 
+  // Initializing countryData state to null.
+  let [countryData, setCountryData] = useState(null);
+
   // This functions toggle theme betwween light and dark.
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === "light" ? "dark" : "light");
@@ -21,11 +24,19 @@ function App() {
     document.body.className = theme + '-body';
   }, [theme]);
 
+  // Fetching countryData from restcountries API and setting it to countryData state.
+  useEffect(() => {
+    fetch('https://restcountries.com/v3.1/all')
+    .then(response => response.json())
+    .then(data => setCountryData(data))
+    .catch(error => console.log('error:', error))
+  }, []);
+
   // Returning complete app.
   return (
     <>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{theme, toggleTheme}}>
+      <ContextProvider value={{theme, toggleTheme, countryData}}>
         <Nav />
         <Outlet />
       </ContextProvider>

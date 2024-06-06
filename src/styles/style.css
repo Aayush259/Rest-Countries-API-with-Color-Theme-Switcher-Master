@@ -231,13 +231,9 @@ label[for="region"]{
     outline:0;
 }
 
-/* #region:active{
-    outline:0;
-} */
-
 #loaderContainer{
     width:100vw;
-    min-height:90vh;
+    min-height:50vh;
     background-color:transparent;
 }
 

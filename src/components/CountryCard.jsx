@@ -2,30 +2,19 @@ import React from "react";
 
 function CountryCard(props) {
 
-    // This function handles the click on the card and displays the detail information about the country by calling displayCountryDetail function in Home component.
-    const handleCountryClick = () => {
-
-        props.setCardToScroll(props.countryName);
-
-        props.displayCountryDetail(props.countryName);
-        
-        // Scroll to top.
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
+    // Destructuring props.
+    const { theme, countryName, countryFlag, countryFlagAlt, countryPopulation, countryRegion, countryCapital } = props;
 
     // Returning Card.
     return (
         <>
-        <div className={`card ${props.mode}-card`} id={props.countryName} onClick={handleCountryClick}>
-            <img src={props.countryFlag} alt={props.countryFlagAlt} width={200} />
+        <div className={`card ${theme}-card`} id={countryName}>
+            <img src={countryFlag} alt={countryFlagAlt} width={200} />
             <div className="countryDetails">
-                <p className="countryName bold-800">{props.countryName}</p>
-                <p className="population"><span className="bold-600">Population: </span>{props.countryPopulation.toLocaleString()}</p>
-                <p className="region"><span className="bold-600">Region: </span>{props.countryRegion}</p>
-                <p className="capital"><span className="bold-600">Capital: </span>{props.countryCapital}</p>
+                <p className="countryName bold-800">{countryName}</p>
+                <p className="population"><span className="bold-600">Population: </span>{countryPopulation.toLocaleString()}</p>
+                <p className="region"><span className="bold-600">Region: </span>{countryRegion}</p>
+                <p className="capital"><span className="bold-600">Capital: </span>{countryCapital}</p>
             </div>
         </div>
         </>
