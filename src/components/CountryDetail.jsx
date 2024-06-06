@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Context } from "../context/Context.jsx";
 
 function CountryDetail() {
-    
-    // Navigate function to go back when back button is clicked.
-    const navigate = useNavigate();
 
     const [countryDetail, setCountryDetail] = useState(null);
 
@@ -40,7 +37,7 @@ function CountryDetail() {
     );
 
     if (countryDetail) {
-        console.log(countryDetail);
+        
         const countryFlag = countryDetail[0]["flags"]["svg"];
         const countryFlagAlt = countryDetail[0]["flags"]["alt"];
         const countryLanguages = Object.values(countryDetail[0]["languages"]).join(", ");
@@ -112,13 +109,13 @@ function CountryDetail() {
     // Returning country detail.
     return (
         <>
-        <button 
+        <Link 
+            to={'/'}
             id="backBtn" 
             className={`flex ${theme}-backBtn`}
-            onClick={() => navigate(-1)}
         >
             <span className="backArrow">&#8599;</span>Back
-        </button>
+        </Link>
 
         {toReturn}
         </>
