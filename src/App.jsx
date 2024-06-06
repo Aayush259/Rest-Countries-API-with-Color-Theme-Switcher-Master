@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import Nav from './components/Nav';
-import Home from "./components/Home";
 import './styles/style.css';
 import { Outlet } from "react-router-dom";
 import { ContextProvider } from "./context/Context.jsx";

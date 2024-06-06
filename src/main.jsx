@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Home from './components/Home.jsx';
+import CountryDetail from './components/CountryDetail.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route path='/' element={<Home />} />
+      <Route path='country/:countryName' element={<CountryDetail />} />
     </Route>
   )
 )

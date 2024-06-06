@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CountryCard(props) {
 
@@ -8,7 +9,11 @@ function CountryCard(props) {
     // Returning Card.
     return (
         <>
-        <div className={`card ${theme}-card`} id={countryName}>
+        <Link 
+            className={`card ${theme}-card`} 
+            id={countryName}
+            to={`country/${countryName}`}
+        >
             <img src={countryFlag} alt={countryFlagAlt} width={200} />
             <div className="countryDetails">
                 <p className="countryName bold-800">{countryName}</p>
@@ -16,7 +21,7 @@ function CountryCard(props) {
                 <p className="region"><span className="bold-600">Region: </span>{countryRegion}</p>
                 <p className="capital"><span className="bold-600">Capital: </span>{countryCapital}</p>
             </div>
-        </div>
+        </Link>
         </>
     )
 }
