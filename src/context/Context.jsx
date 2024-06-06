@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Create a context.
-const Context = React.useContext();
+const Context = React.createContext();
 
 // Context Provider component.
 const ContextProvider = ({ children, value }) => {

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Nav from './components/Nav';
 import Home from "./components/Home";
 import './styles/style.css';
+import { Outlet } from "react-router-dom";
+import { ContextProvider } from "./context/Context.jsx";
 
 function App() {
 
@@ -23,8 +25,10 @@ function App() {
   return (
     <>
     <div className={`app-${theme}`}>
-      <Nav mode={theme} changeTheme={toggleTheme} />
-      <Home mode={theme} />
+      <ContextProvider value={{theme, toggleTheme}}>
+        <Nav />
+        <Outlet />
+      </ContextProvider>
     </div>
     </>
   )
