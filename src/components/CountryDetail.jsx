@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../context/Context.jsx";
 
@@ -6,6 +6,8 @@ function CountryDetail() {
     
     // Navigate function to go back when back button is clicked.
     const navigate = useNavigate();
+
+    const [countryDetail, setCountryDetail] = useState(null);
 
     // Scroll to top when this components mounts.
     useEffect(() => {
@@ -15,45 +17,55 @@ function CountryDetail() {
         });
     }, []);
 
-    const { theme, countryData } = useContext(Context);
+    // Getting theme and countryData from context.
+    const { theme } = useContext(Context);
+
+    // Getting country name from URL.
     const { countryName } = useParams();
 
-    // Getting all country details using countryName from the URL.
-    const countryDetail = countryData.find(country => country.name.common === countryName);
-    const countryFlag = countryDetail["flags"]["svg"];
-    const countryFlagAlt = countryDetail["flags"]["alt"];
-    const countryLanguages = Object.values(countryDetail["languages"]).join(", ");
-    const countryNativeName = countryDetail.name["nativeName"][Object.keys(countryDetail["languages"])[0]]["common"];
-    const countryPopulation = countryDetail["population"];
-    const countryRegion = countryDetail["region"];
-    const countrySubRegion = countryDetail["subregion"];
-    const countryCapital = countryDetail["capital"];
-    const countryTopLevelDomain = countryDetail["tld"];
-    const countryCurrencies = countryDetail["currencies"][Object.keys(countryDetail["currencies"])[0]]["name"];
+    useEffect(() => {
+        fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
+        .then(response => response.json())
+        .then(data => setCountryDetail(data))
+        .catch(error => console.log('error:', error))
+    }, []);
 
-    // If there are no borderCountries, the set borderCountries to "No Border Countries".
-    let borderCountries;
-    try {
-        borderCountries = countryDetail["borders"].join(", ");
-    } catch {
-        borderCountries = "No Border Countries";
-    }
+    // Return value (loader) when data is in fetching process.
+    let toReturn = (
+        <div className={`loaderContainer flex ${theme}`}>
+            <div className='circle'></div>
+            <div className='circle'></div>
+            <div className='circle'></div>
+        </div>
+    );
 
-    // Splitting the borderCountries into an array.
-    let borderCountriesArray = borderCountries.toString().split(",");
+    if (countryDetail) {
+        console.log(countryDetail);
+        const countryFlag = countryDetail[0]["flags"]["svg"];
+        const countryFlagAlt = countryDetail[0]["flags"]["alt"];
+        const countryLanguages = Object.values(countryDetail[0]["languages"]).join(", ");
+        const countryNativeName = countryDetail[0].name["nativeName"][Object.keys(countryDetail[0]["languages"])[0]]["common"];
+        const countryPopulation = countryDetail[0]["population"];
+        const countryRegion = countryDetail[0]["region"];
+        const countrySubRegion = countryDetail[0]["subregion"];
+        const countryCapital = countryDetail[0]["capital"];
+        const countryTopLevelDomain = countryDetail[0]["tld"];
+        const countryCurrencies = countryDetail[0]["currencies"][Object.keys(countryDetail[0]["currencies"])[0]]["name"];
+        
+        // If there are no borderCountries, the set borderCountries to "No Border Countries".
+        let borderCountries;
+        try {
+            borderCountries = countryDetail[0]["borders"].join(", ");
+        } catch {
+            borderCountries = "No Border Countries";
+        }
+    
+        // Splitting the borderCountries into an array.
+        let borderCountriesArray = borderCountries.toString().split(",");
 
-    // Returning country detail.
-    return (
-        <>
-        <button 
-            id="backBtn" 
-            className={`flex ${theme}-backBtn`}
-            onClick={() => navigate(-1)}
-        >
-            <span className="backArrow">&#8599;</span>Back
-        </button>
-
-        <div id="countryDetail" className="flex">
+        // Return value (country detail) when data is fetched.
+        toReturn = (
+            <div id="countryDetail" className="flex">
             <div id="countryFlag">
                 <img src={countryFlag} alt={countryFlagAlt} />
             </div>
@@ -94,6 +106,21 @@ function CountryDetail() {
                 </p>
             </div>
         </div>
+        );
+    }
+    
+    // Returning country detail.
+    return (
+        <>
+        <button 
+            id="backBtn" 
+            className={`flex ${theme}-backBtn`}
+            onClick={() => navigate(-1)}
+        >
+            <span className="backArrow">&#8599;</span>Back
+        </button>
+
+        {toReturn}
         </>
     )
 }

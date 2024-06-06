@@ -25,7 +25,7 @@ function App() {
 
   // Fetching countryData from restcountries API and setting it to countryData state.
   useEffect(() => {
-    fetch('https://restcountries.com/v3.1/all')
+    fetch('https://restcountries.com/v3.1/all?fields=name,flags,capital,region,population')
     .then(response => response.json())
     .then(data => setCountryData(data))
     .catch(error => console.log('error:', error))
@@ -35,7 +35,7 @@ function App() {
   return (
     <>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{theme, toggleTheme, countryData}}>
+      <ContextProvider value={{theme, toggleTheme, countryData, setCountryData}}>
         <Nav />
         <Outlet />
       </ContextProvider>
