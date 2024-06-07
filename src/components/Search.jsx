@@ -1,10 +1,15 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import searchIconWhite from "../images/search-white.svg";
 import searchIconDark from "../images/search-dark.svg";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../context/Context.jsx";
 
 function Search({ theme }) {
 
+    // Getting  optionValue state and its setter function deom global context.
+    const { optionValue, setOptionValue } = useContext(Context);
+
+    // Navigate function to control navigation when input value or select value changes.
     const navigate = useNavigate();
 
     // Getting option and input element reference.
@@ -14,12 +19,15 @@ function Search({ theme }) {
     // If the mode is light, then set the dark search icon, else set white search icon.
     let searchImg = theme === "light" ? searchIconDark : searchIconWhite;
 
+    // This function handles navigation when the value of input or select gets changed.
     const handleNavigation = (param) => {
         navigate(param);
-    }
+    };
 
     // This function handles the navigation based on the value of option.
     const handleOptionNavigation = () => {
+        // Update the option value state.
+        setOptionValue(optionRef.current.value);
         
         // If keywords are not present, means there is no input value, then include option value only, else include input value with option value to the URL.
         if (inputRef.current.value === '') {
@@ -42,6 +50,7 @@ function Search({ theme }) {
                     placeholder="Search for a country..." 
                     autoComplete="on"
                     ref={inputRef}
+                    onChange={handleInputNavigation}
                 />
             </label>
             <label htmlFor="region" className={`flex ${theme}-label`}>
@@ -49,6 +58,7 @@ function Search({ theme }) {
                     name="region" 
                     id="region" 
                     autoComplete="off"
+                    value={optionValue}
                     ref={optionRef}
                     onChange={handleOptionNavigation}
                 >

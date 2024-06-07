@@ -12,6 +12,8 @@ const router = createBrowserRouter(
       <Route path='/' element={<Home />} />
       <Route path='filter/' element={<Home />} />
       <Route path='filter/:region' element={<FilteredCountry />} />
+      <Route path='keyword(s)/:keyword' element={<FilteredCountry />} />
+      <Route path='filter/:region/keyword(s)/:keyword' element={<FilteredCountry />} />
       <Route path='country/:countryName' element={<CountryDetail />} />
     </Route>
   )

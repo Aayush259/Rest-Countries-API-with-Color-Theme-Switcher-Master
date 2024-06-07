@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import Nav from './components/Nav';
 import './styles/style.css';
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { ContextProvider } from "./context/Context.jsx";
 
 function App() {
@@ -12,6 +12,12 @@ function App() {
 
   // Initializing countryData state to null.
   let [countryData, setCountryData] = useState(null);
+
+  // Getting region parameter from URL.
+  const { region } = useParams();
+
+  // State for region option value in Search.jsx. If region parameter is present then set it to its value, else set it to empty string.
+  const [optionValue, setOptionValue] = useState(region ? region : '');
 
   // Loader
 
@@ -44,7 +50,7 @@ function App() {
   return (
     <>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, loader }}>
+      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, loader, optionValue, setOptionValue }}>
         <Nav />
         <Outlet />
       </ContextProvider>
