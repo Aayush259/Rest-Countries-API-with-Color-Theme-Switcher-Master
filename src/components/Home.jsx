@@ -6,14 +6,7 @@ import Search from './Search.jsx';
 export default function Home() {
 
     // Context for theme and countryDaa.
-    const {theme, countryData} = useContext(Context);
-
-    // Loader
-    const loader = (
-        <div id="loaderContainer" className="flex">
-            <div id="loader"></div>
-        </div>
-    );
+    const {theme, countryData, loader} = useContext(Context);
 
     return (
         <>

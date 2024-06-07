@@ -13,6 +13,15 @@ function App() {
   // Initializing countryData state to null.
   let [countryData, setCountryData] = useState(null);
 
+  // Loader
+
+    
+  const loader = (
+    <div id="loaderContainer" className="flex">
+        <div id="loader"></div>
+    </div>
+  );
+
   // This functions toggle theme betwween light and dark.
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === "light" ? "dark" : "light");
@@ -35,7 +44,7 @@ function App() {
   return (
     <>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{theme, toggleTheme, countryData, setCountryData}}>
+      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, loader }}>
         <Nav />
         <Outlet />
       </ContextProvider>

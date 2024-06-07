@@ -7,25 +7,23 @@ import Search from './Search.jsx';
 export default function RegionFilteredCountry() {
 
     // Getting countryData from Context.
-    const { theme, countryData } = useContext(Context);
+    const { theme, countryData, loader } = useContext(Context);
 
-    // Loader
-    const loader = (
-        <div id="loaderContainer" className="flex">
-            <div id="loader"></div>
-        </div>
-    );
+    // Value to be returned.
+    let returnValue = null;
 
-    let returnValue;
+    // Getting region from URL.
+    const { region } = useParams();
 
+    // If countryData is present in context, then display cards by filtering them according to regions. Else display loader.
     if (countryData) {
+        // Copy of countryData.
         const copyCountryData = countryData;
 
-        // Getting region from URL.
-        const { region } = useParams();
-    
+        // Filtering countries on the basis of region.
         const filteredCountries = copyCountryData.filter((country) => country['region'] === region);
 
+        // Updating returnValue.
         returnValue = (
             <div id="countryCardContainer">
                 {filteredCountries ? filteredCountries.map((country) => {
@@ -36,7 +34,6 @@ export default function RegionFilteredCountry() {
     } else {
         returnValue = loader;
     }
-
 
     return (
         <>
