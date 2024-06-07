@@ -7,15 +7,27 @@ function Search({ theme }) {
 
     const navigate = useNavigate();
 
+    // Getting option and input element reference.
+    const optionRef = useRef();
     const inputRef = useRef();
 
     // If the mode is light, then set the dark search icon, else set white search icon.
     let searchImg = theme === "light" ? searchIconDark : searchIconWhite;
 
-    // This function handles the navigation based on the value of option.
-    const handleNavigation = (e) => {
-        navigate(`filter/${e.target.value}`);
+    const handleNavigation = (param) => {
+        navigate(param);
     }
+
+    // This function handles the navigation based on the value of option.
+    const handleOptionNavigation = () => {
+        
+        // If keywords are not present, means there is no input value, then include option value only, else include input value with option value to the URL.
+        if (inputRef.current.value === '') {
+            handleNavigation(`/filter/${optionRef.current.value}`);
+        } else {
+            handleNavigation(`/filter/${optionRef.current.value}/keywords/${inputRef.current.value}`);
+        };
+    };
 
     return (
         // Returning search (both search box and options).
@@ -37,7 +49,8 @@ function Search({ theme }) {
                     name="region" 
                     id="region" 
                     autoComplete="off"
-                    onChange={handleNavigation}
+                    ref={optionRef}
+                    onChange={handleOptionNavigation}
                 >
                         <option 
                             value="" 

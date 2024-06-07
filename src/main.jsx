@@ -10,6 +10,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route path='/' element={<Home />} />
+      <Route path='filter/' element={<Home />} />
       <Route path='filter/:region' element={<RegionFilteredCountry />} />
       <Route path='country/:countryName' element={<CountryDetail />} />
     </Route>
