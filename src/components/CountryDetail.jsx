@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../context/Context.jsx";
+import ThreeDotLoader from "./ThreeDotLoader.jsx";
 
 function CountryDetail() {
 
@@ -36,13 +37,7 @@ function CountryDetail() {
     }, []);
 
     // Return value (loader) when data is in fetching process.
-    let toReturn = (
-        <div className={`loaderContainer flex ${theme}`}>
-            <div className='circle'></div>
-            <div className='circle'></div>
-            <div className='circle'></div>
-        </div>
-    );
+    let toReturn = (<ThreeDotLoader theme={theme} />);
 
     if (countryDetail) {
         
