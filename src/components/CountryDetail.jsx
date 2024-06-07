@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../context/Context.jsx";
 
 function CountryDetail() {
 
     const [countryDetail, setCountryDetail] = useState(null);
+
+    // Getting navigate function.
+    const navigate = useNavigate();
 
     // Scroll to top when this components mounts.
     useEffect(() => {
@@ -19,6 +22,11 @@ function CountryDetail() {
 
     // Getting country name from URL.
     const { countryName } = useParams();
+
+    // This function navigates back to the previous page when the back button is clicked.
+    const navigateBack = () => {
+        navigate(-1);
+    };
 
     useEffect(() => {
         fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
@@ -109,13 +117,13 @@ function CountryDetail() {
     // Returning country detail.
     return (
         <>
-        <Link 
-            to={'/'}
+        <button 
+            onClick={navigateBack}
             id="backBtn" 
             className={`flex ${theme}-backBtn`}
         >
             <span className="backArrow">&#8599;</span>Back
-        </Link>
+        </button>
 
         {toReturn}
         </>
