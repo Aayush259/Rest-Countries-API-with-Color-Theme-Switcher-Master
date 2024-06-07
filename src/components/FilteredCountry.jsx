@@ -4,7 +4,7 @@ import { Context } from '../context/Context.jsx';
 import CountryCard from './CountryCard.jsx';
 import Search from './Search.jsx';
 
-export default function RegionFilteredCountry() {
+export default function FilteredCountry() {
 
     // Getting countryData from Context.
     const { theme, countryData, loader } = useContext(Context);
