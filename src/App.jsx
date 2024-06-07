@@ -14,10 +14,13 @@ function App() {
   let [countryData, setCountryData] = useState(null);
 
   // Getting region parameter from URL.
-  const { region } = useParams();
+  const { region, keyword } = useParams();
 
   // State for region option value in Search.jsx. If region parameter is present then set it to its value, else set it to empty string.
   const [optionValue, setOptionValue] = useState(region ? region : '');
+
+  // State for input value (keywords) in Search.jsx. If keyword parameter is present then set it to its value, else set it to empty string.
+  const [inputValue, setInputValue] = useState(keyword ? keyword : '');
 
   // Loader
 
@@ -50,7 +53,7 @@ function App() {
   return (
     <>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, loader, optionValue, setOptionValue }}>
+      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, loader, optionValue, setOptionValue, inputValue, setInputValue }}>
         <Nav />
         <Outlet />
       </ContextProvider>

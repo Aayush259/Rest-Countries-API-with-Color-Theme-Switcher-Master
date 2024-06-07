@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import searchIconWhite from "../images/search-white.svg";
 import searchIconDark from "../images/search-dark.svg";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { Context } from "../context/Context.jsx";
 function Search({ theme }) {
 
     // Getting  optionValue state and its setter function deom global context.
-    const { optionValue, setOptionValue } = useContext(Context);
+    const { optionValue, setOptionValue, inputValue, setInputValue } = useContext(Context);
 
     // Navigate function to control navigation when input value or select value changes.
     const navigate = useNavigate();
@@ -24,16 +24,41 @@ function Search({ theme }) {
         navigate(param);
     };
 
-    // This function handles the navigation based on the value of option.
+        // This function handles navigation based on the value of option and input when option value is changed.
     const handleOptionNavigation = () => {
+
+        // Getting current value and option value from there references.
+        const currentInput = inputRef.current.value;
+        const currentOption = optionRef.current.value;
+
         // Update the option value state.
-        setOptionValue(optionRef.current.value);
+        setOptionValue(currentOption);
         
         // If keywords are not present, means there is no input value, then include option value only, else include input value with option value to the URL.
-        if (inputRef.current.value === '') {
-            handleNavigation(`/filter/${optionRef.current.value}`);
+        if (currentInput === '') {
+            handleNavigation(`/filter/${currentOption}`);
         } else {
-            handleNavigation(`/filter/${optionRef.current.value}/keywords/${inputRef.current.value}`);
+            handleNavigation(`/filter/${currentOption}/keyword(s)/${currentInput}`);
+        };
+    };
+
+    // This function handles navigation based on the value of option and input when input value is changed.
+    const handleInputNavigation = () => {
+
+        // Getting current value and option value from there references.
+        const currentInput = inputRef.current.value;
+        const currentOption = optionRef.current.value;
+
+        // Update input value state.
+        setInputValue(currentInput);
+
+        if (currentOption === '') {
+
+            currentInput === '' ? handleNavigation('/') : handleNavigation(`/keyword(s)/${currentInput}`);
+        }
+        else {
+
+            currentInput === '' ? handleNavigation(`/filter/${currentOption}`) : handleNavigation(`/filter/${currentOption}/keyword(s)/${currentInput}`);
         };
     };
 
@@ -49,8 +74,10 @@ function Search({ theme }) {
                     id="country" 
                     placeholder="Search for a country..." 
                     autoComplete="on"
+                    value={inputValue}
                     ref={inputRef}
                     onChange={handleInputNavigation}
+                    autoFocus
                 />
             </label>
             <label htmlFor="region" className={`flex ${theme}-label`}>
