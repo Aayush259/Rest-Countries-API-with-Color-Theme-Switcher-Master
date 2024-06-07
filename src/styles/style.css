@@ -193,8 +193,7 @@ label{
 
 #search{
     margin-top:1.5rem;
-    padding-left:2.6rem;
-    padding-right:2.6rem;
+    padding:1rem 2.6rem;
 }
 
 input,select{
@@ -208,28 +207,28 @@ input,select{
 
 label[for="country"]{
     min-width:34vw;
-    justify-content:flex-start;
-    padding-left:30px;
-    gap:20px;
+    justify-content:space-between;
+    padding-left:1.5rem;
+    gap:8px;
 }
 
 #country,#country:active{
     border:none;
-    outline:0;
+    padding:1rem;
+    padding-left:0.5rem;
+    width:100%;
 }
 
 label[for="region"]{
-    min-width:14vw;
-    overflow:hidden;
+    min-width:15vw;
     padding-right:1rem;
 }
 
 #region{
-    width:100%;
-    height:100%;
+    width:98%;
+    height:97%;
     border:none;
     padding:1rem;
-    outline:0;
 }
 
 .loaderContainer{
@@ -330,6 +329,9 @@ label[for="region"]{
     #countryCardContainer{
         grid-template-columns:repeat(2,1fr);
     }
+    label[for="region"]{
+        min-width:29vw;
+    }
 }
 
 @media only screen and (max-width:550px){
@@ -347,6 +349,10 @@ label[for="region"]{
     #countryDetail .countryName{
         font-size:1.5rem !important;
     }
+
+    label[for="region"]{
+        min-width:38vw;
+    }
 }
 
 @media only screen and (max-width:430px){
@@ -359,6 +365,9 @@ label[for="region"]{
     #mode{
         gap:7px;
         font-size:14px;
+    }
+    label[for="region"]{
+        min-width:49vw;
     }
 }
 
