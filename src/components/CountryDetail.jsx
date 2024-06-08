@@ -30,10 +30,26 @@ function CountryDetail() {
     };
 
     useEffect(() => {
-        fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
+
+        // Controller for the API.
+        const controller = new AbortController();
+
+        fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`, { signal: controller.signal })
         .then(response => response.json())
-        .then(data => setCountryDetail(data))
-        .catch(error => console.log('error:', error))
+        .then(data => {
+            setCountryDetail(data);
+        })
+        .catch(error => {
+            console.log('error:', error);
+        });
+
+        // If the component unmounts, the abort the fetch API request.
+        return () => {
+            if (controller) {
+                controller.abort();
+            }
+        };
+
     }, []);
 
     // Return value (loader) when data is in fetching process.

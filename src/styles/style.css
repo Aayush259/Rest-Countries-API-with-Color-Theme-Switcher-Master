@@ -233,7 +233,7 @@ label[for="region"]{
 }
 
 .loaderContainer{
-    min-height:50vh;
+    min-height:10vh;
     gap:0px;
     margin:4rem;
 }
