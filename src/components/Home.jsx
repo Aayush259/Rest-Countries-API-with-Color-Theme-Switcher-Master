@@ -43,7 +43,15 @@ export default function Home() {
                 next={getMoreCountryData}
                 hasMore={hasMoreCountryData}
                 loader={<ThreeDotLoader theme={theme} />}
-                endMessage={<p>You reached at the end of the page</p>}
+                endMessage={
+                    <p style={{
+                        textAlign: 'center',
+                        margin: '1.2rem auto',
+                        fontSize: '1rem',
+                    }}>
+                        You have reached at the end 😊.
+                    </p>
+                }
             >
                 <div id='countryCardContainer'>
                     {displayData ? displayData.map((country) => {

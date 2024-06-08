@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import App from './App.jsx';
 import Home from './components/Home.jsx';
-import CountryDetail from './components/CountryDetail.jsx';
 import FilteredCountry from './components/FilteredCountry.jsx';
+import CountryDetail from './components/CountryDetail.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

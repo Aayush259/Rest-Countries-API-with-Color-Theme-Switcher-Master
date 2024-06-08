@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Nav from './components/Nav';
-import './styles/style.css';
 import { Outlet, useParams } from 'react-router-dom';
 import { ContextProvider } from "./context/Context.jsx";
+import './styles/style.css';
+import Nav from './components/Nav';
 
 export default function App() {
 
@@ -21,13 +21,6 @@ export default function App() {
 
   // State for input value (keywords) in Search.jsx. If keyword parameter is present then set it to its value, else set it to empty string.
   const [inputValue, setInputValue] = useState(keyword ? keyword : '');
-
-  // Loader
-  const loader = (
-    <div id='loaderContainer' className='flex'>
-        <div id='loader'></div>
-    </div>
-  );
 
   // This functions toggle theme betwween light and dark.
   const toggleTheme = () => {
@@ -51,7 +44,7 @@ export default function App() {
   return (
     <>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, loader, optionValue, setOptionValue, inputValue, setInputValue }}>
+      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue }}>
         <Nav />
         <Outlet />
       </ContextProvider>
