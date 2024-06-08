@@ -8,7 +8,7 @@ import ThreeDotLoader from './ThreeDotLoader.jsx';
 export default function Home() {
 
     // Context for theme and countryDaa.
-    const {theme, countryData, loader} = useContext(Context);
+    const {theme, countryData } = useContext(Context);
 
     // State for the country data that to be displayed on screen.
     const [displayData, setDisplayData] = useState([]);
@@ -42,14 +42,14 @@ export default function Home() {
                 dataLength={displayData.length}
                 next={getMoreCountryData}
                 hasMore={hasMoreCountryData}
-                loader={<div className='scrollLoaderContainer'><ThreeDotLoader theme={theme} /></div>}
+                loader={<ThreeDotLoader theme={theme} />}
                 endMessage={<p>You reached at the end of the page</p>}
             >
-            <div id="countryCardContainer">
-                {displayData ? displayData.map((country) => {
-                    return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} theme={theme} />
-                }) : loader}
-            </div>
+                <div id='countryCardContainer'>
+                    {displayData ? displayData.map((country) => {
+                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} theme={theme} />
+                    }) : <ThreeDotLoader theme={theme} />}
+                </div>
             </InfiniteScroll>
         </>
     );

@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 import { useState, useEffect } from 'react';
 import Nav from './components/Nav';
 import './styles/style.css';
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from 'react-router-dom';
 import { ContextProvider } from "./context/Context.jsx";
 
-function App() {
+export default function App() {
 
   // Initializing the app theme with light.
-  let [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState('light');
 
   // Initializing countryData state to null.
-  let [countryData, setCountryData] = useState(null);
+  const [countryData, setCountryData] = useState(null);
 
   // Getting region parameter from URL.
   const { region, keyword } = useParams();
@@ -23,17 +23,15 @@ function App() {
   const [inputValue, setInputValue] = useState(keyword ? keyword : '');
 
   // Loader
-
-    
   const loader = (
-    <div id="loaderContainer" className="flex">
-        <div id="loader"></div>
+    <div id='loaderContainer' className='flex'>
+        <div id='loader'></div>
     </div>
   );
 
   // This functions toggle theme betwween light and dark.
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === "light" ? "dark" : "light");
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   }
 
   // When the theme is changes, reflect it to the body' background by adding a class of theme + "-body".
@@ -59,7 +57,5 @@ function App() {
       </ContextProvider>
     </div>
     </>
-  )
-}
-
-export default App
+  );
+};

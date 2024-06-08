@@ -1,10 +1,10 @@
-import React, { useContext, useRef } from "react";
-import searchIconWhite from "../images/search-white.svg";
-import searchIconDark from "../images/search-dark.svg";
-import { useNavigate } from "react-router-dom";
-import { Context } from "../context/Context.jsx";
+import React, { useContext, useRef } from 'react';
+import searchIconWhite from '../images/search-white.svg';
+import searchIconDark from '../images/search-dark.svg';
+import { useNavigate } from 'react-router-dom';
+import { Context } from '../context/Context.jsx';
 
-function Search({ theme }) {
+export default function Search({ theme }) {
 
     // Getting  optionValue state and its setter function deom global context.
     const { optionValue, setOptionValue, inputValue, setInputValue } = useContext(Context);
@@ -17,7 +17,7 @@ function Search({ theme }) {
     const inputRef = useRef();
 
     // If the mode is light, then set the dark search icon, else set white search icon.
-    let searchImg = theme === "light" ? searchIconDark : searchIconWhite;
+    let searchImg = theme === 'light' ? searchIconDark : searchIconWhite;
 
     // This function handles navigation when the value of input or select gets changed.
     const handleNavigation = (param) => {
@@ -65,67 +65,67 @@ function Search({ theme }) {
     return (
         // Returning search (both search box and options).
         <>
-        <div id="search" className="flex">
-            <label htmlFor="country" className={`flex ${theme}-label`}>
-                <img src={searchImg} alt="Search for a country" height={15} className={`${theme}-searchImg`}/>
+        <div id='search' className='flex'>
+            <label htmlFor='country' className={`flex ${theme}-label`}>
+                <img src={searchImg} alt='Search for a country' height={15} className={`${theme}-searchImg`}/>
                 <input 
-                    type="text" 
-                    name="country" 
-                    id="country" 
-                    placeholder="Search for a country..." 
-                    autoComplete="on"
+                    type='text' 
+                    name='country' 
+                    id='country' 
+                    placeholder='Search for a country...' 
+                    autoComplete='on'
                     value={inputValue}
                     ref={inputRef}
                     onChange={handleInputNavigation}
                     autoFocus
                 />
             </label>
-            <label htmlFor="region" className={`flex ${theme}-label`}>
+            <label htmlFor='region' className={`flex ${theme}-label`}>
                 <select 
-                    name="region" 
-                    id="region" 
-                    autoComplete="off"
+                    name='region' 
+                    id='region' 
+                    autoComplete='off'
                     value={optionValue}
                     ref={optionRef}
                     onChange={handleOptionNavigation}
                 >
                         <option 
-                            value="" 
+                            value='' 
                             className={`${theme}-label`}
                         >
                             Find by Region
                         </option>
 
                         <option 
-                            value="Africa" 
+                            value='Africa' 
                             className={`${theme}-label`}
                         >
                             Africa    
                         </option>
 
                         <option 
-                            value="Americas"
+                            value='Americas'
                             className={`${theme}-label`}
                         >
                             America    
                         </option>
 
                         <option 
-                            value="Asia" 
+                            value='Asia' 
                             className={`${theme}-label`}
                         >
                             Asia    
                         </option>
 
                         <option 
-                            value="Europe" 
+                            value='Europe' 
                             className={`${theme}-label`}
                         >
                             Europe    
                         </option>
 
                         <option 
-                            value="Oceania" 
+                            value='Oceania' 
                             className={`${theme}-label`}
                         >
                             Oceanic    
@@ -134,7 +134,5 @@ function Search({ theme }) {
             </label>
         </div>
         </>
-    )
-}
-
-export default Search;
+    );
+};

@@ -32,9 +32,9 @@ export default function FilteredCountry() {
     
             // Updating returnValue.
             returnValue = (
-                <div id="countryCardContainer">
+                <div id='countryCardContainer'>
                     {filteredCountries ? filteredCountries.map((country) => {
-                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} theme={theme} />
+                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} theme={theme} />
                     }) : loader}
                 </div>
             );
@@ -46,9 +46,9 @@ export default function FilteredCountry() {
 
             // Updating returnValue.
             returnValue = (
-                <div id="countryCardContainer">
+                <div id='countryCardContainer'>
                     {filteredCountries ? filteredCountries.map((country) => {
-                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} theme={theme} />
+                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} theme={theme} />
                     }) : loader}
                 </div>
             );
@@ -60,9 +60,9 @@ export default function FilteredCountry() {
 
             // Updating returnValue.
             returnValue = (
-                <div id="countryCardContainer">
+                <div id='countryCardContainer'>
                     {filteredCountries ? filteredCountries.map((country) => {
-                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country["capital"]} countryRegion={country["region"]} countryPopulation={country["population"]} countryFlag={country["flags"]["svg"]} countryFlagAlt={country["flags"]["alt"]} theme={theme} />
+                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} theme={theme} />
                     }) : loader}
                 </div>
             );
@@ -75,5 +75,5 @@ export default function FilteredCountry() {
         <Search theme={theme} />
         {returnValue}
         </>
-    )
+    );
 };
