@@ -64,10 +64,10 @@ Routing is handled using **react-router-dom**. The app has several routes define
 
 ### Routes
 
-**/Where-in-the-world/**: Home page displaying all countries.
-**/Where-in-the-world/filter/:region**: Displays countries filtered by region.
-**/Where-in-the-world/filter/:region/keyword(s)/:keyword**: Displays countries filtered by region and keyword.
-**/Where-in-the-world/country/:countryName**: Displays detailed information about a specific country.
+- **/Where-in-the-world/**: Home page displaying all countries.
+- **/Where-in-the-world/filter/:region**: Displays countries filtered by region.
+- **/Where-in-the-world/filter/:region/keyword(s)/:keyword**: Displays countries filtered by region and keyword.
+- **/Where-in-the-world/country/:countryName**: Displays detailed information about a specific country.
 
 ## Infinite Scroll
 
