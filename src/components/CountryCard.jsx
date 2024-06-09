@@ -12,7 +12,7 @@ export default function CountryCard(props) {
         <Link 
             className={`card ${theme}-card`} 
             id={countryName}
-            to={`/country/${countryName}`}
+            to={`/Where-in-the-world/country/${countryName}`}
         >
             <img src={countryFlag} alt={countryFlagAlt} width={200} />
             <div className='countryDetails'>
@@ -23,5 +23,5 @@ export default function CountryCard(props) {
             </div>
         </Link>
         </>
-    )
+    );
 };

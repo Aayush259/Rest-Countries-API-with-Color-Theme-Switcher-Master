@@ -36,9 +36,9 @@ export default function Search({ theme }) {
         
         // If keywords are not present, means there is no input value, then include option value only, else include input value with option value to the URL.
         if (currentInput === '') {
-            handleNavigation(`/filter/${currentOption}`);
+            handleNavigation(`/Where-in-the-world/filter/${currentOption}`);
         } else {
-            handleNavigation(`/filter/${currentOption}/keyword(s)/${currentInput}`);
+            handleNavigation(`/Where-in-the-world/filter/${currentOption}/keyword(s)/${currentInput}`);
         };
     };
 
@@ -54,11 +54,11 @@ export default function Search({ theme }) {
 
         if (currentOption === '') {
 
-            currentInput === '' ? handleNavigation('/') : handleNavigation(`/keyword(s)/${currentInput}`);
+            currentInput === '' ? handleNavigation('/Where-in-the-world/') : handleNavigation(`/Where-in-the-world/keyword(s)/${currentInput}`);
         }
         else {
 
-            currentInput === '' ? handleNavigation(`/filter/${currentOption}`) : handleNavigation(`/filter/${currentOption}/keyword(s)/${currentInput}`);
+            currentInput === '' ? handleNavigation(`/Where-in-the-world/filter/${currentOption}`) : handleNavigation(`/Where-in-the-world/filter/${currentOption}/keyword(s)/${currentInput}`);
         };
     };
 

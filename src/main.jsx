@@ -8,13 +8,13 @@ import CountryDetail from './components/CountryDetail.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<App />}>
-      <Route path='/' element={<Home />} />
-      <Route path='filter/' element={<Home />} />
-      <Route path='filter/:region' element={<FilteredCountry />} />
-      <Route path='keyword(s)/:keyword' element={<FilteredCountry />} />
-      <Route path='filter/:region/keyword(s)/:keyword' element={<FilteredCountry />} />
-      <Route path='country/:countryName' element={<CountryDetail />} />
+    <Route path='/Where-in-the-world/' element={<App />}>
+      <Route path='/Where-in-the-world/' element={<Home />} />
+      <Route path='/Where-in-the-world/filter/' element={<Home />} />
+      <Route path='/Where-in-the-world/filter/:region' element={<FilteredCountry />} />
+      <Route path='/Where-in-the-world/keyword(s)/:keyword' element={<FilteredCountry />} />
+      <Route path='/Where-in-the-world/filter/:region/keyword(s)/:keyword' element={<FilteredCountry />} />
+      <Route path='/Where-in-the-world/country/:countryName' element={<CountryDetail />} />
     </Route>
   )
 );
