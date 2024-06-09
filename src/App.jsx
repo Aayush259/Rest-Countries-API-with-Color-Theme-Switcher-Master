@@ -4,6 +4,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { ContextProvider } from "./context/Context.jsx";
 import './styles/style.css';
 import Nav from './components/Nav';
+import Error from './components/Error.jsx';
 
 export default function App() {
 
@@ -12,6 +13,8 @@ export default function App() {
 
   // Initializing countryData state to null.
   const [countryData, setCountryData] = useState(null);
+
+  const [error, setError] = useState(null);
 
   // Getting region parameter from URL.
   const { region, keyword } = useParams();
@@ -37,14 +40,18 @@ export default function App() {
     fetch('https://restcountries.com/v3.1/all?fields=name,flags,capital,region,population')
     .then(response => response.json())
     .then(data => setCountryData(data))
-    .catch(error => console.log('error:', error))
+    .catch(error => {
+      console.log('error:', error);
+      setError(<Error errorName={error.name} errorMessage={error.message} status={error.status ? error.status : ''} />)
+    });
+
   }, []);
 
   // Returning complete app.
   return (
     <>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue }}>
+      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue, error }}>
         <Nav />
         <Outlet />
       </ContextProvider>
