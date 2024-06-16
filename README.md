@@ -4,6 +4,8 @@
 
 **"Where in the World"** is a web application built using Vite and React that allows users to explore information about countries around the world. This app features dynamic theming, infinite scrolling, and advanced filtering capabilities.
 
+![Where in the World Home page](/src/images/s-1.png)
+
 ## Table of Contents
 
 1. [Features](#features)
@@ -31,6 +33,8 @@
 - Use the dropdown menu to filter countries by region.
 - Click on a country card to view detailed information about the country.
 - Scroll down to load more countries dynamically.
+
+![India](/src/images/s-2.png)
 
 ## Technologies Used:
 
