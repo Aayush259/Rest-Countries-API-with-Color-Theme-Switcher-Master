@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense, lazy } from 'react';
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { ContextProvider } from "./context/Context.jsx";
 import './styles/style.css';
-import Nav from './components/Nav';
+const Nav = lazy(() => import('./components/Nav.jsx'));
 import Error from './components/Error.jsx';
+import ThreeDotLoader from './components/ThreeDotLoader.jsx';
 
 export default function App() {
 
@@ -70,8 +71,13 @@ export default function App() {
     <>
     <div className={`app-${theme}`}>
       <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue, error }}>
-        <Nav />
-        <Outlet />
+        <Suspense fallback={<ThreeDotLoader />}>
+          <Nav />
+
+          <Suspense fallback={<ThreeDotLoader />}>
+            <Outlet />
+          </Suspense>
+        </Suspense>
       </ContextProvider>
     </div>
     </>

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import App from './App.jsx';
-import Home from './components/Home.jsx';
-import FilteredCountry from './components/FilteredCountry.jsx';
-import CountryDetail from './components/CountryDetail.jsx';
+const Home = lazy(() => import('./components/Home.jsx'));
+const FilteredCountry = lazy(() => import('./components/FilteredCountry.jsx'));
+const CountryDetail = lazy(() => import('./components/CountryDetail.jsx'));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
