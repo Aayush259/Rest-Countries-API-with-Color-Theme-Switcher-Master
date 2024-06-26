@@ -11,7 +11,7 @@ export default function Search() {
     const { theme, countryData, optionValue, setOptionValue, inputValue, setInputValue } = useContext(Context);
 
     // Getting displayData, countryData, and setDisplayData function from FilteredContext.
-    const { displayData, setDisplayData } = useContext(FilteredCountries);
+    // const { displayData, setDisplayData } = useContext(FilteredCountries);
 
     // Navigate function to control navigation when input value or select value changes.
     const navigate = useNavigate();
@@ -34,10 +34,12 @@ export default function Search() {
         // Getting option value from there reference.
         const currentOption = optionRef.current.value;
 
-        // Getting countries data for currentOption.
-        const currentOptionCountriesData = countryData.filter((country) => country['region'] === currentOption);
+        navigate(`/Where-in-the-world/filter/${currentOption}`);
 
-        setDisplayData(currentOptionCountriesData);
+        // Getting countries data for currentOption.
+        // const currentOptionCountriesData = countryData.filter((country) => country['region'] === currentOption);
+
+        // setDisplayData(currentOptionCountriesData);
     };
 
     // This function handles navigation based on the value of option and input when input value is changed.
@@ -127,6 +129,13 @@ export default function Search() {
                             className={`${theme}-label`}
                         >
                             Oceanic    
+                        </option>
+
+                        <option 
+                            value='All' 
+                            className={`${theme}-label`}
+                        >
+                            All    
                         </option>
                 </select>
             </label>
