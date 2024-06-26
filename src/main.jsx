@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import App from './App.jsx';
 const Home = lazy(() => import('./components/Home.jsx'));
-const FilteredCountry = lazy(() => import('./components/FilteredCountry.jsx'));
+const FilteredCountry = lazy(() => import('./components/FilteredCountryCards.jsx'));
 const CountryDetail = lazy(() => import('./components/CountryDetail.jsx'));
 
 const router = createBrowserRouter(
@@ -12,8 +12,6 @@ const router = createBrowserRouter(
       <Route path='/Where-in-the-world/' element={<Home />} />
       <Route path='/Where-in-the-world/filter/' element={<Home />} />
       <Route path='/Where-in-the-world/filter/:region' element={<FilteredCountry />} />
-      <Route path='/Where-in-the-world/keyword(s)/:keyword' element={<FilteredCountry />} />
-      <Route path='/Where-in-the-world/filter/:region/keyword(s)/:keyword' element={<FilteredCountry />} />
       <Route path='/Where-in-the-world/country/:countryName' element={<CountryDetail />} />
     </Route>
   )

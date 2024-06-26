@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../context/Context.jsx';
 
 export default function CountryCard(props) {
 
     // Destructuring props.
-    const { theme, countryName, countryFlag, countryFlagAlt, countryPopulation, countryRegion, countryCapital } = props;
+    const { countryName, countryFlag, countryFlagAlt, countryPopulation, countryRegion, countryCapital } = props;
+
+    // Getting theme from context.
+    const { theme } = useContext(Context);
 
     // Returning Card.
     return (

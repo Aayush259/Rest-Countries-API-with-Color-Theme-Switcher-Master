@@ -3,11 +3,15 @@ import searchIconWhite from '../images/search-white.svg';
 import searchIconDark from '../images/search-dark.svg';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../context/Context.jsx';
+import { FilteredCountries } from '../context/FilteredCountriesContext.jsx';
 
-export default function Search({ theme }) {
+export default function Search() {
 
     // Getting  optionValue state and its setter function deom global context.
-    const { optionValue, setOptionValue, inputValue, setInputValue } = useContext(Context);
+    const { theme, countryData, optionValue, setOptionValue, inputValue, setInputValue } = useContext(Context);
+
+    // Getting displayData, countryData, and setDisplayData function from FilteredContext.
+    const { displayData, setDisplayData } = useContext(FilteredCountries);
 
     // Navigate function to control navigation when input value or select value changes.
     const navigate = useNavigate();
@@ -27,19 +31,13 @@ export default function Search({ theme }) {
         // This function handles navigation based on the value of option and input when option value is changed.
     const handleOptionNavigation = () => {
 
-        // Getting current value and option value from there references.
-        const currentInput = inputRef.current.value;
+        // Getting option value from there reference.
         const currentOption = optionRef.current.value;
 
-        // Update the option value state.
-        setOptionValue(currentOption);
-        
-        // If keywords are not present, means there is no input value, then include option value only, else include input value with option value to the URL.
-        if (currentInput === '') {
-            handleNavigation(`/Where-in-the-world/filter/${currentOption}`);
-        } else {
-            handleNavigation(`/Where-in-the-world/filter/${currentOption}/keyword(s)/${currentInput}`);
-        };
+        // Getting countries data for currentOption.
+        const currentOptionCountriesData = countryData.filter((country) => country['region'] === currentOption);
+
+        setDisplayData(currentOptionCountriesData);
     };
 
     // This function handles navigation based on the value of option and input when input value is changed.

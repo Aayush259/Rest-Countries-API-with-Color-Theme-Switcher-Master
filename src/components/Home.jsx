@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Context } from '../context/Context.jsx';
-import CountryCard from './CountryCard.jsx';
-import Search from './Search.jsx';
+import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Context } from '../context/Context.jsx';
+import { FilteredCountriesContextProvider } from '../context/FilteredCountriesContext.jsx';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
+const Search = lazy(() => import('./Search.jsx'));
+const FilteredCountryCards = lazy(() => import('./FilteredCountryCards.jsx'));
 
 export default function Home() {
 
@@ -23,44 +24,47 @@ export default function Home() {
 
     // This function sets more data in displayData when user reach at the end of the visible data screen.
     const getMoreCountryData = () => {
-        // If countryData same in displayData and countryData then set hasMoreCountryData to false.
-        if (displayData.length >= countryData.length) {
+
+        const updatedDisplayCountriesData = displayData.slice(0, displayData.length + 25);
+        
+        // If countryData same in updatedDisplayCountriesData and displayData then set hasMoreCountryData to false.
+        if (updatedDisplayCountriesData.length >= displayData.length) {
             setHasMoreCountryData(false);
             return;
         };
 
         // Update displayCountryData.
         setTimeout(() => {
-            setDisplayData(countryData.slice(0, displayData.length + 25));
+            setDisplayData(updatedDisplayCountriesData);
         }, 2000);
     };
 
     return (
-        <>
-        <Search theme={theme} />
-            {error ||
-                <InfiniteScroll
-                dataLength={displayData.length}
-                next={getMoreCountryData}
-                hasMore={hasMoreCountryData}
-                loader={<ThreeDotLoader theme={theme} />}
-                endMessage={
-                    <p style={{
-                        textAlign: 'center',
-                        margin: '1.2rem auto',
-                        fontSize: '1rem',
-                    }}>
-                        You have reached at the end 😊.
-                    </p>
+        <Suspense fallback={<ThreeDotLoader />}>
+            <FilteredCountriesContextProvider value={{ displayData, setDisplayData }}>
+                <Search />
+                {error ||
+                    <InfiniteScroll
+                    dataLength={displayData.length}
+                    next={getMoreCountryData}
+                    hasMore={hasMoreCountryData}
+                    loader={<ThreeDotLoader theme={theme} />}
+                    endMessage={
+                        <p style={{
+                            textAlign: 'center',
+                            margin: '1.2rem auto',
+                            fontSize: '1rem',
+                        }}>
+                            You have reached at the end 😊.
+                        </p>
+                    }
+                >
+                        <Suspense fallback={<ThreeDotLoader />}>
+                                <FilteredCountryCards />
+                        </Suspense>
+                    </InfiniteScroll>
                 }
-            >
-                    <div id='countryCardContainer'>
-                        {displayData ? displayData.map((country) => {
-                            return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} theme={theme} />
-                        }) : <ThreeDotLoader theme={theme} />}
-                    </div>
-                </InfiniteScroll>
-            }
-        </>
+            </FilteredCountriesContextProvider>
+        </Suspense>
     );
 };
