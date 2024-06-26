@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../context/Context.jsx';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
@@ -33,8 +33,8 @@ export default function CountryDetail() {
         navigate(-1);
     };
 
-    useEffect(() => {
-
+    // This function fetches country detail.
+    const fetchCountryDetail = useCallback(() => {
         // Controller for the API.
         const controller = new AbortController();
 
@@ -56,11 +56,13 @@ export default function CountryDetail() {
                 controller.abort();
             }
         };
-
-    }, []);
+    }, [countryName]);
 
     useEffect(() => {
+        return fetchCountryDetail();
+    }, []);
 
+    const getReturnValue = useCallback(() => {
         if (countryDetail) {
             
             const countryFlag = countryDetail[0]['flags']['svg'];
@@ -129,10 +131,14 @@ export default function CountryDetail() {
                 </div>
             </div>
             );
-    
-            // Updating return value.
-            setReturnValue(toReturn);
+
+            return toReturn;
         }
+    }, [countryDetail]);
+
+    // Updating return value.
+    useEffect(() => {
+        setReturnValue(getReturnValue);
     }, [countryDetail]);
 
     
