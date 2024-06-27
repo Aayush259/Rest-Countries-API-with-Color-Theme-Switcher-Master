@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom';
 
 export default function FilteredCountryCards() {
 
-    // Getting countryData from context.
-    const { countryData } = useContext(Context);
+    // Getting countryData and inputValue of search bar from context.
+    const { countryData, inputValue } = useContext(Context);
 
     // Getting region from route param.
     const { region } = useParams();
@@ -29,7 +29,7 @@ export default function FilteredCountryCards() {
 
     // When countriesToDisplay state changes, update visibleCountryData state.
     useEffect(() => {
-        setVisibleCountryData(countriesToDisplay.slice(0, 25));
+        setVisibleCountryData(countriesToDisplay.slice(0, 20));
     }, [countriesToDisplay]);
 
     // This function sets more data in displayData when user reach at the end of the visible data screen.
@@ -49,14 +49,19 @@ export default function FilteredCountryCards() {
     // When region changes, update countriesToDisplay state by filtering the countries according to region.
     useEffect(() => {
 
+        // If countryData is not present, then do nothing.
+        if (!countryData) return;
+
         // Making setHasMoreCountryData state to true to enable infinite scrolling.
         setHasMoreCountryData(true);
 
-        if (countryData) {
-            region && region !== 'All' ? setCountriesToDisplay(countryData.filter((country) => country['region'] === region)) : setCountriesToDisplay(countryData);
-        }
+        // Filter countries according to region.
+        region && region !== 'All' ? setCountriesToDisplay(countryData.filter((country) => country['region'] === region)) : setCountriesToDisplay(countryData);
 
-    }, [region, countryData]);
+        // Filter countries according to inputValue.
+        inputValue && inputValue !== ' ' ? setCountriesToDisplay(prevCountriesToDisplay => prevCountriesToDisplay.filter((country) => country.name.common.toLowerCase().startsWith(inputValue.toLowerCase()))) : null;
+
+    }, [inputValue, region, countryData]);
 
     return (
         <InfiniteScroll

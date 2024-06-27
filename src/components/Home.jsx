@@ -6,7 +6,7 @@ const FilteredCountryCards = lazy(() => import('./FilteredCountryCards.jsx'));
 
 export default function Home() {
 
-    // Context for theme and countryDaa.
+    // Context error state from context.
     const { error } = useContext(Context);
 
     return (
