@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Context } from '../context/Context.jsx';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
-import CountryCard from './CountryCard.jsx';
+const CountryCard = lazy(() => import('./CountryCard.jsx'));
 import { useParams } from 'react-router-dom';
 
 export default function FilteredCountryCards() {
@@ -80,9 +80,11 @@ export default function FilteredCountryCards() {
             }
         >
             <div id='countryCardContainer'>
-                {visibleCountryData ? visibleCountryData.map((country) => {
-                    return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} />
-                }) : null}
+                <Suspense fallback={''}>
+                    {visibleCountryData ? visibleCountryData.map((country) => {
+                        return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} />
+                    }) : null}
+                </Suspense>
             </div>
         </InfiniteScroll>
     );
