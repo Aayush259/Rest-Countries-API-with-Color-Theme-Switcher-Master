@@ -19,7 +19,7 @@ export default function CountryCard(props) {
             id={countryName}
             to={`/Where-in-the-world/country/${countryName}`}
         >
-            <img src={countryFlag} alt={countryFlagAlt} width={200} />
+            <img src={countryFlag} alt={countryFlagAlt} width={200} loading='lazy' />
             <div className='countryDetails'>
                 <p className='countryName bold-800'>{countryName}</p>
                 <p className='population'><span className='bold-600'>Population: </span>{countryPopulation.toLocaleString()}</p>

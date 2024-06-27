@@ -13,7 +13,11 @@ const router = createBrowserRouter(
       <Route path='/Where-in-the-world/filter/:region' element={<Home />} />
       <Route path='/Where-in-the-world/country/:countryName' element={<CountryDetail />} />
     </Route>
-  )
+  ),
+  {
+    // Prefetch routes on hover
+    prefetch: "intent"
+  }
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
