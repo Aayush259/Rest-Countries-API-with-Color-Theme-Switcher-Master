@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../context/Context.jsx';
+import '../styles/countryDetail.css';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
 import Error from './Error.jsx';
 

@@ -1,8 +1,9 @@
 import React, { useContext, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import searchIconWhite from '../images/search-white.svg';
 import searchIconDark from '../images/search-dark.svg';
-import { useNavigate } from 'react-router-dom';
 import { Context } from '../context/Context.jsx';
+import '../styles/search.css';
 
 export default function Search() {
 

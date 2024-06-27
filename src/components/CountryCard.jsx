@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../context/Context.jsx';
+import '../styles/countryCard.css';
 
 export default function CountryCard(props) {
 

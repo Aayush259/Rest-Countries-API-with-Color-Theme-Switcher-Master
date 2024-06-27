@@ -1,0 +1,93 @@
+
+label{
+    background-color:#FFF;
+    box-shadow:0 0 5px 0 hsla(0, 0%, 52%, 0.425);
+}
+
+.light-label{
+    background-color:#FFF;
+    color:var(--Dark-Gray-Light-Mode-Input);
+}
+
+#search{
+    margin-top:1.5rem;
+    padding:1rem 2.6rem;
+}
+
+input,select{
+    background-color:transparent;
+}
+
+#search>label{
+    height:50px;
+    border-radius:0.5rem;
+}
+
+label[for="country"]{
+    min-width:34vw;
+    justify-content:space-between;
+    padding-left:1.5rem;
+    gap:8px;
+}
+
+#country,#country:active{
+    border:none;
+    padding:1rem;
+    padding-left:0.5rem;
+    width:100%;
+}
+
+label[for="region"]{
+    min-width:15vw;
+    padding-right:1rem;
+}
+
+#region{
+    width:98%;
+    height:97%;
+    padding:1rem;
+}
+
+@media only screen and (max-width: 800px){
+    label[for="region"]{
+        min-width:29vw;
+    }
+}
+
+@media only screen and (max-width:550px){
+    #search{
+        margin-top:1rem;
+        gap:2rem;
+        flex-wrap:wrap;
+    }
+    label[for="region"]{
+        min-width:38vw;
+    }
+}
+
+@media only screen and (max-width:430px){
+    label[for="region"]{
+        min-width:49vw;
+    }
+}
+
+@media only screen and (max-width:310px){
+    #search{
+        padding-right:0.3rem;
+        padding-left:0.4rem;
+    }
+    #search>label{
+        height:40px;
+    }
+    label[for="country"]{
+        min-width:60vw;
+        padding-left:10px;
+        gap:10px;
+    }
+    label[for="region"]{
+        padding-right:0.3rem;
+    }
+    #region{
+        padding:0.4rem;
+    }
+}

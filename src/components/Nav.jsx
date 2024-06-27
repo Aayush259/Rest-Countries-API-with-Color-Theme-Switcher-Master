@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Context } from '../context/Context.jsx';
 import darkModeDisabledImg from '../images/dark-mode-disabled.svg';
 import darkModeEnabledImg from '../images/dark-mode-enabled.svg';
+import '../styles/header.css';
 
 export default function Nav() {
 
