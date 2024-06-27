@@ -54,7 +54,6 @@ export default function Search() {
                     value={inputValue}
                     ref={inputRef}
                     onChange={handleInputChange}
-                    autoFocus
                 />
             </label>
             <label htmlFor='region' className={`flex ${theme}-label`}>
