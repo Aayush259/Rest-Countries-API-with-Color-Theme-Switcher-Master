@@ -52,7 +52,8 @@
 - **App.jsx**: The main component that sets up the theme, fetches country data, and provides the context to other components.
 - **Home.jsx**: Displays a list of countries with infinite scroll.
 - **FilteredCountryCards.jsx**: Displays countries filtered by region and/or keyword.
-- **CountryDetail.jsx**: Shows detailed information about a selected country.
+- **GetCountryDetail.jsx**: Fetch all information about the selected country.
+- **CountryDetail.jsx**: Shows detailed information about the selected country.
 - **CountryCard.jsx**: Represents a single country in a card format.
 - **Nav.jsx**: The navigation bar with theme toggle and app title.
 - **Search.jsx**: Contains the search and filter inputs.
