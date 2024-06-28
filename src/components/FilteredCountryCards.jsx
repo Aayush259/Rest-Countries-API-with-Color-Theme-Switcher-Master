@@ -42,7 +42,7 @@ export default function FilteredCountryCards() {
 
         // Update displayCountryData.
         setTimeout(() => {
-            setVisibleCountryData(countriesToDisplay.splice(0, visibleCountryData.length + 20));
+            setVisibleCountryData(countriesToDisplay.slice(0, visibleCountryData.length + 20));
         }, 1500);
     };
 
