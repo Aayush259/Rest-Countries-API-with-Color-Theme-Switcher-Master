@@ -44,13 +44,14 @@
 - **Context API**: For state management.
 - **Fetch API**: For making network requests.
 - **Infinite Scroll**: For loading data dynamically as you scroll.
+- **React Lazy Loading**: For better performance and user experience.
 - **REST Countries API**: For fetching country data.
 
 ## Components:
 
 - **App.jsx**: The main component that sets up the theme, fetches country data, and provides the context to other components.
 - **Home.jsx**: Displays a list of countries with infinite scroll.
-- **FilteredCountry.jsx**: Displays countries filtered by region and/or keyword.
+- **FilteredCountryCards.jsx**: Displays countries filtered by region and/or keyword.
 - **CountryDetail.jsx**: Shows detailed information about a selected country.
 - **CountryCard.jsx**: Represents a single country in a card format.
 - **Nav.jsx**: The navigation bar with theme toggle and app title.
@@ -70,7 +71,6 @@ Routing is handled using **react-router-dom**. The app has several routes define
 
 - **/Where-in-the-world/**: Home page displaying all countries.
 - **/Where-in-the-world/filter/:region**: Displays countries filtered by region.
-- **/Where-in-the-world/filter/:region/keyword(s)/:keyword**: Displays countries filtered by region and keyword.
 - **/Where-in-the-world/country/:countryName**: Displays detailed information about a specific country.
 
 ## Infinite Scroll

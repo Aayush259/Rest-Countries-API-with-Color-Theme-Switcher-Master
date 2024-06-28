@@ -8,7 +8,7 @@ const CountryDetail = lazy(() => import('./components/CountryDetail.jsx'));
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/Where-in-the-world/' element={<App />}>
-      <Route path='/Where-in-the-world/' element={<Home />} />
+      <Route index element={<Home />} />
       <Route path='/Where-in-the-world/filter/' element={<Home />} />
       <Route path='/Where-in-the-world/filter/:region' element={<Home />} />
       <Route path='/Where-in-the-world/country/:countryName' element={<CountryDetail />} />
