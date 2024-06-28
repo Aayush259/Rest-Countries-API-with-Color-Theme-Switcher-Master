@@ -1,9 +1,9 @@
 import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Context } from '../context/Context.jsx';
+import { useParams } from 'react-router-dom';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
 const CountryCard = lazy(() => import('./CountryCard.jsx'));
-import { useParams } from 'react-router-dom';
 
 export default function FilteredCountryCards() {
 
@@ -42,8 +42,8 @@ export default function FilteredCountryCards() {
 
         // Update displayCountryData.
         setTimeout(() => {
-            setVisibleCountryData(countriesToDisplay.slice(0, visibleCountryData.length + 20));
-        }, 1500);
+            setVisibleCountryData(prevVisibleCountryData => countriesToDisplay.slice(0, prevVisibleCountryData.length + 20));
+        }, 2000);
     };
 
     // When region changes, update countriesToDisplay state by filtering the countries according to region.
@@ -65,7 +65,7 @@ export default function FilteredCountryCards() {
 
     return (
         <InfiniteScroll
-            dataLength={countriesToDisplay.length}
+            dataLength={visibleCountryData.length}
             next={getMoreCountryData}
             hasMore={hasMoreCountryData}
             loader={<ThreeDotLoader />}
