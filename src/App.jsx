@@ -9,8 +9,13 @@ import ThreeDotLoader from './components/ThreeDotLoader.jsx';
 
 export default function App() {
 
-  // Initializing the app theme with light.
-  const [theme, setTheme] = useState('light');
+  // Initializing the app theme with light if not present in localStorage.
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  // Updating theme in local storage when it is changed.
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  }, [theme]);
 
   // Initializing countryData state to null.
   const [countryData, setCountryData] = useState(null);
