@@ -68,7 +68,7 @@ export default function App() {
 
   // Returning complete app.
   return (
-    <>
+    <Suspense fallback={<ThreeDotLoader />}>
     <div className={`app-${theme}`}>
       <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue, error }}>
         <Suspense fallback={<ThreeDotLoader />}>
@@ -80,6 +80,6 @@ export default function App() {
         </Suspense>
       </ContextProvider>
     </div>
-    </>
+    </Suspense>
   );
 };

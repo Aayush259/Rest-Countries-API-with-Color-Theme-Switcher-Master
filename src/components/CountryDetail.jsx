@@ -13,7 +13,7 @@ export default function CountryDetail() {
     const { theme } = useContext(Context);
 
     // Return value (loader) when data is in fetching process.
-    const [returnValue, setReturnValue] = useState(<ThreeDotLoader theme={theme} />);
+    const [returnValue, setReturnValue] = useState(<ThreeDotLoader />);
 
     // Getting navigate function.
     const navigate = useNavigate();
