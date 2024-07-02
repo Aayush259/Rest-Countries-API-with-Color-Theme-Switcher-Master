@@ -71,11 +71,9 @@ export default function GetCountryDetail() {
         {
             error || countryDetail ? 
                 <Suspense>
-                (
                     {
                         error ? <Error errorName={error.name} errorMessage={error.message} status={error.status ? error.status : ''} /> : <CountryDetail countryDetail={countryDetail} />
                     }
-                )
                 </Suspense>
              : <ThreeDotLoader />
         }
