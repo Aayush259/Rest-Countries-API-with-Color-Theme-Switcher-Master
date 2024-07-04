@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Context } from '../context/Context.jsx';
+import { useCountryDataContext } from '../context/Context.jsx';
 import { useParams } from 'react-router-dom';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
 const CountryCard = lazy(() => import('./CountryCard.jsx'));
@@ -8,7 +8,7 @@ const CountryCard = lazy(() => import('./CountryCard.jsx'));
 export default function FilteredCountryCards() {
 
     // Getting countryData and inputValue of search bar from context.
-    const { countryData, inputValue } = useContext(Context);
+    const { countryData, inputValue } = useCountryDataContext();
 
     // Getting region from route param.
     const { region } = useParams();

@@ -1,7 +1,7 @@
 import React, { useRef, Suspense, lazy } from 'react';
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import { ContextProvider } from "./context/Context.jsx";
+import { CountryDataContextProvider } from "./context/Context.jsx";
 import './styles/style.css';
 const Nav = lazy(() => import('./components/Nav.jsx'));
 import Error from './components/Error.jsx';
@@ -75,7 +75,7 @@ export default function App() {
   return (
     <Suspense fallback={<ThreeDotLoader />}>
     <div className={`app-${theme}`}>
-      <ContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue, error }}>
+      <CountryDataContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue, error }}>
         <Suspense fallback={<ThreeDotLoader />}>
           <Nav />
 
@@ -83,7 +83,7 @@ export default function App() {
             <Outlet />
           </Suspense>
         </Suspense>
-      </ContextProvider>
+      </CountryDataContextProvider>
     </div>
     </Suspense>
   );

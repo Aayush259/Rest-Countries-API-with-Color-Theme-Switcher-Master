@@ -1,14 +1,14 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import searchIconWhite from '../images/search-white.svg';
 import searchIconDark from '../images/search-dark.svg';
-import { Context } from '../context/Context.jsx';
+import { useCountryDataContext } from '../context/Context.jsx';
 import '../styles/search.css';
 
 export default function Search() {
 
     // Getting theme, optionValue, inputValue state and there setter function from context.
-    const { theme, optionValue, setOptionValue, inputValue, setInputValue } = useContext(Context);
+    const { theme, optionValue, setOptionValue, inputValue, setInputValue } = useCountryDataContext();
 
     // If the mode is light, then set the dark search icon, else set white search icon.
     let searchImg = theme === 'light' ? searchIconDark : searchIconWhite;

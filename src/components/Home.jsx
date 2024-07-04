@@ -1,5 +1,5 @@
-import React, { lazy, Suspense, useContext } from 'react';
-import { Context } from '../context/Context.jsx';
+import React, { lazy, Suspense } from 'react';
+import { useCountryDataContext } from '../context/Context.jsx';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
 const Search = lazy(() => import('./Search.jsx'));
 const FilteredCountryCards = lazy(() => import('./FilteredCountryCards.jsx'));
@@ -7,7 +7,7 @@ const FilteredCountryCards = lazy(() => import('./FilteredCountryCards.jsx'));
 export default function Home() {
 
     // Context error state from context.
-    const { error } = useContext(Context);
+    const { error } = useCountryDataContext();
 
     return (
         <Suspense fallback={<ThreeDotLoader />}>

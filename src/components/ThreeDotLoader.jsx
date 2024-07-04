@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../styles/threeDotLoaderStyles.css';
-import { Context } from '../context/Context';
+import { useCountryDataContext } from '../context/Context';
 
 export default function ThreeDotLoader() {
 
-    const { theme } = useContext(Context);
+    // Getting theme from context.
+    const { theme } = useCountryDataContext();
 
     return (
         <div className={`threeDotLoaderContainer flex ${theme}`}>

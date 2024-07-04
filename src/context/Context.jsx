@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 
 // Create a context.
-const Context = React.createContext();
+const CountryDataContext = createContext();
 
 // Context Provider component.
-const ContextProvider = ({ children, value }) => {
+const CountryDataContextProvider = ({ children, value }) => {
     return (
-        <Context.Provider value={value}>
+        <CountryDataContext.Provider value={value}>
             {children}
-        </Context.Provider>
+        </CountryDataContext.Provider>
     );
 };
 
-export { Context, ContextProvider };
+// Custom hook for CountryDataContext.
+const useCountryDataContext = () => useContext(CountryDataContext);
+
+export { useCountryDataContext, CountryDataContextProvider };

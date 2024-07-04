@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { Context } from '../context/Context.jsx';
+import React from 'react';
+import { useCountryDataContext } from '../context/Context.jsx';
 import darkModeDisabledImg from '../images/dark-mode-disabled.svg';
 import darkModeEnabledImg from '../images/dark-mode-enabled.svg';
 import '../styles/header.css';
 
 export default function Nav() {
 
-    const {theme, toggleTheme} = useContext(Context);
+    const {theme, toggleTheme} = useCountryDataContext();
 
     // If the theme is "light" then set imgURL to darkModeDisabledImg, else set it to darkModeEnabledImg.
     let imgURL = theme === 'light' ? darkModeDisabledImg : darkModeEnabledImg;

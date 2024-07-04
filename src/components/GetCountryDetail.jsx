@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, useCallback, useContext, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Context } from '../context/Context.jsx';
+import { useCountryDataContext } from '../context/Context.jsx';
 import '../styles/countryDetail.css';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
 const Error = lazy(() => import('./Error.jsx'));
@@ -15,7 +15,7 @@ export default function GetCountryDetail() {
     const [error, setError] = useState(null);
 
     // Getting theme from context.
-    const { theme } = useContext(Context);
+    const { theme } = useCountryDataContext();
 
     // Getting navigate function.
     const navigate = useNavigate();
@@ -71,9 +71,11 @@ export default function GetCountryDetail() {
         {
             error || countryDetail ? 
                 <Suspense>
+                (
                     {
                         error ? <Error errorName={error.name} errorMessage={error.message} status={error.status ? error.status : ''} /> : <CountryDetail countryDetail={countryDetail} />
                     }
+                )
                 </Suspense>
              : <ThreeDotLoader />
         }
