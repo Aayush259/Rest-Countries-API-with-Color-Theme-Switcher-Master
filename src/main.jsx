@@ -9,9 +9,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/Where-in-the-world/' element={<App />}>
       <Route index element={<Home />} />
-      <Route path='/Where-in-the-world/filter/' element={<Home />} />
-      <Route path='/Where-in-the-world/filter/:region' element={<Home />} />
-      <Route path='/Where-in-the-world/country/:countryName' element={<GetCountryDetail />} />
+      <Route path='filter' element={<Home />} />
+      <Route path='filter/:region' element={<Home />} />
+      <Route path='country/:countryName' element={<GetCountryDetail />} />
     </Route>
   ),
   {
