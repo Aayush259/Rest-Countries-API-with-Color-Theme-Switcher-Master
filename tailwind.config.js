@@ -18,6 +18,18 @@ export default {
       boxShadow: {
         'light-box-shadow': '0 0 5px 0 hsla(0, 0%, 52%, 0.425)',
         'dark-box-shadow': '0 0 4px 0 var(--Very-Dark-Blue-Light-Mode-Text)'
+      },
+      keyframes: {
+        loading: {
+          '0%': { transform: 'scale(1)', opacity: '1' },
+          '50%': { transform: 'scale(0)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        }
+      },
+      animation: {
+        loading1: 'loading 1s infinite',
+        loading2: 'loading 1s infinite 0.2s',
+        loading3: 'loading 1s infinite 0.4s',
       }
     },
   },

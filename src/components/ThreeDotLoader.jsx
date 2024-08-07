@@ -1,17 +1,18 @@
 import React from 'react';
-import '../styles/threeDotLoaderStyles.css';
-import { useCountryDataContext } from '../context/Context';
 
-export default function ThreeDotLoader() {
-
-    // Getting theme from context.
-    const { theme } = useCountryDataContext();
-
-    return (
-        <div className={`threeDotLoaderContainer flex ${theme}`}>
-            <div className='circle'></div>
-            <div className='circle'></div>
-            <div className='circle'></div>
-        </div>
-    );
+export default function Loader() {
+  return (
+    <div
+      className="flex flex-row items-center justify-center h-[70vh]"
+    >
+      {
+        ['animate-loading1', 'animate-loading2', 'animate-loading3'].map(animation => (
+          <div
+            key={animation}
+            className={`w-3 h-3 m-1 rounded-full bg-slate-900 dark:bg-violet-200 opacity-0 ${animation}`}
+          ></div>
+        ))
+      }
+    </div>
+  );
 };
