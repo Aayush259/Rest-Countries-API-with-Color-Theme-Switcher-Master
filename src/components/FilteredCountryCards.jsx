@@ -79,7 +79,9 @@ export default function FilteredCountryCards() {
                 </p>
             }
         >
-            <div id='countryCardContainer'>
+            <div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-6 gap-y-10 md:gap-y-14 items-start"
+            >
                 <Suspense fallback={''}>
                     {visibleCountryData ? visibleCountryData.map((country) => {
                         return <CountryCard key={country.name.common} countryName={country.name.common} countryCapital={country['capital']} countryRegion={country['region']} countryPopulation={country['population']} countryFlag={country['flags']['svg']} countryFlagAlt={country['flags']['alt']} />

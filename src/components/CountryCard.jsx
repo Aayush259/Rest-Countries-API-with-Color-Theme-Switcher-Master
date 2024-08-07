@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useCountryDataContext } from '../context/Context.jsx';
-import '../styles/countryCard.css';
 
 export default function CountryCard({ countryName, countryFlag, countryFlagAlt, countryPopulation, countryRegion, countryCapital }) {
 
@@ -12,19 +11,49 @@ export default function CountryCard({ countryName, countryFlag, countryFlagAlt, 
     // Returning Card.
     return (
         <>
-        <Link 
-            className={`card ${theme}-card`} 
-            id={countryName}
-            to={`/Where-in-the-world/country/${countryName}`}
-        >
-            <img src={countryFlag} alt={countryFlagAlt} width={200} loading='lazy' />
-            <div className='countryDetails'>
-                <p className='countryName bold-800'>{countryName}</p>
-                <p className='population'><span className='bold-600'>Population: </span>{countryPopulation.toLocaleString()}</p>
-                <p className='region'><span className='bold-600'>Region: </span>{countryRegion}</p>
-                <p className='capital'><span className='bold-600'>Capital: </span>{countryCapital[0]}</p>
-            </div>
-        </Link>
+            <Link
+                id={countryName}
+                to={`/Where-in-the-world/country/${countryName}`}
+                className="w-60 max-w-[96vw] mx-auto pb-5 rounded-lg overflow-hidden text-Very-Dark-Blue-Dark-Mode-Background bg-Very-Light-Gray-Light-Mode-Background shadow-light-box-shadow dark:bg-Dark-Blue-Dark-Mode-Elements dark:text-Very-Light-Gray-Light-Mode-Background dark:shadow-dark-box-shadow"
+            >
+
+                <img
+                    src={countryFlag}
+                    alt={countryFlagAlt}
+                    loading="lazy"
+                    className="max-h-64 min-h-28"
+                />
+
+                <div
+                    className="p-4 text-sm sm:text-lg"
+                >
+                    <p
+                        className="font-bold mt-1 mb-2 text-lg sm:text-xl"
+                    >
+                        {countryName}
+                    </p>
+
+                    <p
+                        className="mt-1"
+                    >
+                        <span className="font-bold sm:font-semibold">
+                            Population:
+                        </span> {countryPopulation.toLocaleString()}
+                    </p>
+
+                    <p className="mt-1">
+                        <span className="font-bold sm:font-semibold">
+                            Region:
+                        </span> {countryRegion}
+                    </p>
+
+                    <p className="mt-1">
+                        <span className="font-bold sm:font-semibold">
+                            Capital:
+                        </span> {countryCapital[0]}
+                    </p>
+                </div>
+            </Link>
         </>
     );
 };
