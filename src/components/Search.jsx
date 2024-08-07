@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import searchIconWhite from '../images/search-white.svg';
 import searchIconDark from '../images/search-dark.svg';
 import { useCountryDataContext } from '../context/Context.jsx';
-import '../styles/search.css';
 
 export default function Search() {
 
@@ -39,83 +38,73 @@ export default function Search() {
         setInputValue(currentInput);
     };
 
+    // Function which returns object for options with its name and value.
+    const getOptions = (value, name) => ({ value, name });
+
+    // Array of all otpions.
+    const options = [
+        getOptions('', 'Find by Region'),
+        getOptions('Africa', 'Africa'),
+        getOptions('Americas', 'America'),
+        getOptions('Asia', 'Asia'),
+        getOptions('Europe', 'Europe'),
+        getOptions('Oceania', 'Oceanic'),
+        getOptions('All', 'All'),
+    ];
+
     return (
-        // Returning search (both search box and options).
         <>
-        <div id='search' className='flex'>
-            <label htmlFor='country' className={`flex ${theme}-label`}>
-                <img src={searchImg} alt='Search for a country' height={15} className={`${theme}-searchImg`}/>
-                <input 
-                    type='text' 
-                    name='country' 
-                    id='country' 
-                    placeholder='Search for a country...' 
-                    autoComplete='on'
-                    value={inputValue}
-                    ref={inputRef}
-                    onChange={handleInputChange}
-                />
-            </label>
-            <label htmlFor='region' className={`flex ${theme}-label`}>
-                <select 
-                    name='region' 
-                    id='region' 
-                    autoComplete='off'
-                    value={optionValue}
-                    ref={optionRef}
-                    onChange={handleOptionNavigation}
+            <div
+                className="flex flex-wrap w-full gap-8 mt-6 py-4 px-10 items-center justify-between text-Very-Dark-Blue-Light-Mode-Text"
+            >
+                <label
+                    htmlFor="country"
+                    className="flex items-center h-12 pl-6 gap-1 min-w-[34vw] max-w-[97vw] shadow-light-box-shadow dark:shadow-dark-box-shadow dark:bg-Dark-Blue-Dark-Mode-Elements rounded"
                 >
-                        <option 
-                            value='' 
-                            className={`${theme}-label`}
-                        >
-                            Find by Region
-                        </option>
-
-                        <option 
-                            value='Africa' 
-                            className={`${theme}-label`}
-                        >
-                            Africa    
-                        </option>
-
-                        <option 
-                            value='Americas'
-                            className={`${theme}-label`}
-                        >
-                            America    
-                        </option>
-
-                        <option 
-                            value='Asia' 
-                            className={`${theme}-label`}
-                        >
-                            Asia    
-                        </option>
-
-                        <option 
-                            value='Europe' 
-                            className={`${theme}-label`}
-                        >
-                            Europe    
-                        </option>
-
-                        <option 
-                            value='Oceania' 
-                            className={`${theme}-label`}
-                        >
-                            Oceanic    
-                        </option>
-
-                        <option 
-                            value='All' 
-                            className={`${theme}-label`}
-                        >
-                            All    
-                        </option>
-                </select>
-            </label>
-        </div>
+                    <img
+                        src={searchImg}
+                        alt="Search for a country"
+                        className="h-4"
+                    />
+                    <input
+                        type="text"
+                        name="country"
+                        id="country"
+                        className="bg-transparent h-full p-4 flex-grow max-w-[90%] dark:text-White-Dark-Mode-Text-Light-Mode-Elements"
+                        placeholder="Search for a country..."
+                        autoComplete="on"
+                        value={inputValue}
+                        ref={inputRef}
+                        onChange={handleInputChange}
+                    />
+                </label>
+                <label
+                    htmlFor="region"
+                    className="flex items-center pr-4 pl-2 shadow-light-box-shadow dark:shadow-dark-box-shadow dark:bg-Dark-Blue-Dark-Mode-Elements rounded cursor-pointer"
+                >
+                    <select
+                        name="region"
+                        id="region"
+                        autoComplete="off"
+                        className="bg-transparent h-12 cursor-pointer pr-1 dark:text-White-Dark-Mode-Text-Light-Mode-Elements"
+                        value={optionValue}
+                        ref={optionRef}
+                        onChange={handleOptionNavigation}
+                    >
+                        {
+                            options.map(option => (
+                                <option
+                                    key={option['name']}
+                                    value={option['value']}
+                                    className="dark:bg-Dark-Blue-Dark-Mode-Elements rounded"
+                                >
+                                    {option['name']}
+                                </option>
+                            ))
+                        }
+                    </select>
+                </label>
+            </div>
         </>
     );
 };
