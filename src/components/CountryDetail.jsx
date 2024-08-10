@@ -1,6 +1,5 @@
 import React from 'react';
 import { useCountryDataContext } from '../context/Context.jsx';
-import '../styles/countryDetail.css';
 
 export default function CountryDetail({ countryDetail }) {
 
@@ -18,7 +17,7 @@ export default function CountryDetail({ countryDetail }) {
     const countryCapital = countryDetail[0]['capital'];
     const countryTopLevelDomain = countryDetail[0]['tld'];
     const countryCurrencies = countryDetail[0]['currencies'][Object.keys(countryDetail[0]['currencies'])[0]]['name'];
-    
+
     // If there are no borderCountries, the set borderCountries to "No Border Countries".
     let borderCountries;
     try {
@@ -30,44 +29,94 @@ export default function CountryDetail({ countryDetail }) {
     // Splitting the borderCountries into an array.
     let borderCountriesArray = borderCountries.toString().split(',');
 
-    // Return value (country detail) when data is fetched.
     return (
-        <div id='countryDetail' className='flex'>
-            <div id='countryFlag'>
-                <img src={countryFlag} alt={countryFlagAlt} />
+        <div
+            className="flex flex-col gap-8 lg:flex-row justify-between items-center p-8 text-lg"
+        >
+            <div
+                className="w-full lg:w-1/2 mx-auto"
+            >
+                <img
+                    src={countryFlag}
+                    alt={countryFlagAlt}
+                    className="max-h-80 w-[97%] max-w-[615px] mx-auto"
+                />
             </div>
 
-            <div id='details'>
-                <p className='countryName bold-800'>{countryName}</p>
+            <div className="lg:w-1/2">
+                <p
+                    className="font-bold text-2xl sm:text-3xl w-full"
+                >
+                    {countryName}
+                </p>
 
-                <div className='otherDetails flex' style={{ alignItems: 'flex-start' }}>
+                <div className="flex flex-col md:flex-row gap-8 items-start">
 
-                    <div style={{ width: "50%" }}>
-                        <p className='nativeName'><span className='bold-600'>Native Name: </span>{countryNativeName}</p>
+                    <div className="w-full lg:w-1/2">
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Native Name:
+                            </span> {countryNativeName}
+                        </p>
 
-                        <p className='population'><span className='bold-600'>Population: </span>{countryPopulation.toLocaleString()}</p>
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Population:
+                            </span> {countryPopulation.toLocaleString()}
+                        </p>
 
-                        <p className='region'><span className='bold-600'>Region: </span>{countryRegion}</p>
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Region:
+                            </span> {countryRegion}
+                        </p>
 
-                        <p className='subRegion'><span className='bold-600'>Sub Region: </span>{countrySubRegion}</p>
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Sub Region:
+                            </span> {countrySubRegion}
+                        </p>
 
-                        <p className='capital'><span className='bold-600'>Capital: </span>{countryCapital}</p>
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Capital:
+                            </span> {countryCapital}
+                        </p>
                     </div>
 
-                    <div style={{ width: '50%' }}>
-                        <p className='topLevelDomain'><span className='bold-600'>Top Level Domain: </span>{countryTopLevelDomain}</p>
+                    <div className="w-full lg:w-1/2">
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Top Level Domain:
+                            </span> {countryTopLevelDomain}
+                        </p>
 
-                        <p className='currencies'><span className='bold-600'>Currencies: </span>{countryCurrencies}</p>
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Currencies:
+                            </span> {countryCurrencies}
+                        </p>
 
-                        <p className='languages'><span className='bold-600'>Languages: </span>{countryLanguages}</p>
+                        <p className="mt-3">
+                            <span className="font-semibold">
+                                Languages:
+                            </span> {countryLanguages}
+                        </p>
                     </div>
                 </div>
 
-                <p className='borderCountries flex' style={{ flexWrap: 'wrap', justifyContent: 'flex-start', gap: '8px' }}>
-                    <span className='bold-600'>Border Countries: </span>
-                    {borderCountriesArray.map(borderCountry => (
-                            <span className={`borderCountry ${theme}-backBtn`} key={borderCountry}>{borderCountry}</span>
-                        )
+                <p className="mt-3 flex justify-start flex-wrap gap-2">
+
+                    <span className="font-semibold">
+                        Border Countries:
+                    </span> {borderCountriesArray.map(borderCountry => (
+                        <span
+                            className="flex justify-center items-center py-[2px] px-4 rounded min-w-[12%] text-center mx-1 text-sm sm:text-lg shadow-light-box-shadow"
+                            key={borderCountry}
+                        >
+                            {borderCountry}
+                        </span>
+                    )
                     )}
                 </p>
             </div>

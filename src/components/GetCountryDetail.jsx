@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCountryDataContext } from '../context/Context.jsx';
-import '../styles/countryDetail.css';
 import ThreeDotLoader from './ThreeDotLoader.jsx';
 const Error = lazy(() => import('./Error.jsx'));
 const CountryDetail = lazy(() => import('./CountryDetail.jsx'));
@@ -61,11 +60,10 @@ export default function GetCountryDetail() {
     return (
         <>
         <button 
-            onClick={() => {navigate(-1)}}
-            id='backBtn' 
-            className={`flex ${theme}-backBtn`}
+            onClick={() => {navigate(-1)}} 
+            className="flex flex-row items-center justify-center gap-2 py-1 px-6 mt-12 ml-7 mr-4 mb-5 shadow-light-box-shadow rounded-md"
         >
-            <span className='backArrow'>&#8599;</span>Back
+            <span className="font-serif text-2xl -rotate-[135deg]">&#8599;</span>Back
         </button>
 
         {
