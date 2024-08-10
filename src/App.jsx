@@ -2,7 +2,6 @@ import React, { useRef, Suspense, lazy } from 'react';
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { CountryDataContextProvider } from "./context/Context.jsx";
-import './styles/style.css';
 const Nav = lazy(() => import('./components/Nav.jsx'));
 import Error from './components/Error.jsx';
 import ThreeDotLoader from './components/ThreeDotLoader.jsx';
@@ -41,7 +40,7 @@ export default function App() {
 
   // When the theme is changes, reflect it to the body' background by adding a class of theme + "-body".
   useEffect(() => {
-    document.body.className = theme + '-body';
+    document.body.className = theme;
   }, [theme]);
 
   // Fetching countryData from restcountries API and setting it to countryData state.
@@ -54,13 +53,13 @@ export default function App() {
     const URL = 'https://restcountries.com/v3.1/all?fields=name,flags,capital,region,population';
 
     fetch(URL, { signal: controller.signal })
-    .then(response => response.json())
-    .then(data => setCountryData(data))
-    .catch(error => {
-      console.log('error:', error);
-      if (error.name === 'AbortError') return;  // Ignore abort errors.
-      setError(<Error errorName={error.name} errorMessage={error.message} status={error.status ? error.status : ''} />)
-    });
+      .then(response => response.json())
+      .then(data => setCountryData(data))
+      .catch(error => {
+        console.log('error:', error);
+        if (error.name === 'AbortError') return;  // Ignore abort errors.
+        setError(<Error errorName={error.name} errorMessage={error.message} status={error.status ? error.status : ''} />)
+      });
 
     // Cleanup and abort fetch if component unmounts.
     return () => {
@@ -71,20 +70,21 @@ export default function App() {
 
   }, []);
 
-  // Returning complete app.
   return (
     <Suspense fallback={<ThreeDotLoader />}>
-    <div className={`app-${theme}`}>
-      <CountryDataContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue, error }}>
-        <Suspense fallback={<ThreeDotLoader />}>
-          <Nav />
-
+      <div
+        className="w-screen h-screen overflow-x-hidden overflow-y-auto bg-Very-Light-Gray-Light-Mode-Background dark:bg-Very-Dark-Blue-Dark-Mode-Background dark:text-White-Dark-Mode-Text-Light-Mode-Elements"
+      >
+        <CountryDataContextProvider value={{ theme, toggleTheme, countryData, setCountryData, optionValue, setOptionValue, inputValue, setInputValue, error }}>
           <Suspense fallback={<ThreeDotLoader />}>
+            <Nav />
+
+            <Suspense fallback={<ThreeDotLoader />}>
             <Outlet />
           </Suspense>
-        </Suspense>
-      </CountryDataContextProvider>
-    </div>
+          </Suspense>
+        </CountryDataContextProvider>
+      </div>
     </Suspense>
   );
 };
