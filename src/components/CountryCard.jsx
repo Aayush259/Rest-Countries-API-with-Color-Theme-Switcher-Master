@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useCountryDataContext } from '../context/Context.jsx';
 
 export default function CountryCard({ countryName, countryFlag, countryFlagAlt, countryPopulation, countryRegion, countryCapital }) {
-
-    // Getting theme from context.
-    const { theme } = useCountryDataContext();
 
     // Returning Card.
     return (

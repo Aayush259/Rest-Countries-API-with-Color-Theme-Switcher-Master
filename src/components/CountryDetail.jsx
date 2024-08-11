@@ -1,10 +1,6 @@
 import React from 'react';
-import { useCountryDataContext } from '../context/Context.jsx';
 
 export default function CountryDetail({ countryDetail }) {
-
-    // Getting theme from context.
-    const { theme } = useCountryDataContext();
 
     const countryName = countryDetail[0]['name']['common'];
     const countryFlag = countryDetail[0]['flags']['svg'];
